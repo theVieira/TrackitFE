@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+	font-family: 'Abode';
+	font-style: normal;
+	src: url('../fonts/JK-Abode/JKAbode-Demo.ttf') format('truetype');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	font-weight: 400;
+	font-style: normal;
+	src: url('../fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf')
+		format('truetype');
+}
