@@ -1,0 +1,35 @@
+mat-sidenav-container {
+  height: calc(100vh - 56px);
+}
+
+mat-sidenav {
+  border-radius: 0;
+  width: 200px;
+}
+
+mat-sidenav-content {
+  padding: 1.6rem;
+}
+
+.toolbar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+
+  .header-controls {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+.submenu {
+  max-width: 90%;
+  margin-left: 10%;
+}
+
+@media (min-width: 600px) {
+  mat-sidenav-container {
+    height: calc(100vh - 64px);
+  }
+}

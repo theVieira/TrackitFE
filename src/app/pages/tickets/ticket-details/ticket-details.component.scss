@@ -1,0 +1,41 @@
+mat-card {
+  position: relative;
+  overflow-x: hidden;
+  padding: 2rem;
+
+  .tag {
+    width: fit-content;
+    border-radius: 0.8rem;
+    margin: 0 0 1rem 0;
+  }
+
+  .secondary-subtitle {
+    filter: brightness(80%);
+  }
+
+  mat-card-content {
+    font-weight: 500;
+  }
+
+  .card-content-item {
+    display: flex;
+    align-items: center;
+
+    .card-content-item-title {
+      filter: brightness(80%);
+    }
+  }
+
+  .attachment {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 1.2rem;
+    background: #cecece;
+  }
+}
+
+.footer-actions {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
