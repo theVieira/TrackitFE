@@ -1,0 +1,32 @@
+{
+	"signin": {
+		"title": "Bem vindo de volta!",
+		"subtitle": "Entre com suas credenciais",
+		"login": "Login",
+		"password": "Senha"
+	},
+	"home": {
+		"Daily": "Diário",
+		"Delivery": "Entrega",
+		"Budget": "Orçamento",
+		"Maintenance": "Manutenção",
+		"Low": "Baixa",
+		"Medium": "Média",
+		"Normal": "Normal",
+		"High": "Alta",
+		"Urgent": "Urgente",
+		"Open": "Aberto",
+		"Progress": "Em progresso",
+		"Finish": "Finalizado",
+		"NetworkFailure": "Falha na rede",
+		"SoftwareFailure": "Falha no software",
+		"RemoteAccess": "Acesso remoto",
+		"Documentation": "Documentação",
+		"PeriodicMaintenance": "Manutenção periódica",
+		"Critical": "Crítico",
+		"VIP": "VIP",
+		"TestDrive": "Teste Drive",
+		"Regular": "Regular",
+		"Inactive": "Inativo"
+	}
+}

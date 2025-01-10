@@ -1,0 +1,32 @@
+{
+	"signin": {
+		"title": "Welcome back!",
+		"subtitle": "Log in with your credentials",
+		"login": "Login",
+		"password": "Password"
+	},
+	"home": {
+		"Daily": "Daily",
+		"Delivery": "Delivery",
+		"Budget": "Budget",
+		"Maintenance": "Maintenance",
+		"Low": "Low",
+		"Medium": "Medium",
+		"Normal": "Normal",
+		"High": "High",
+		"Urgent": "Urgent",
+		"Open": "Open",
+		"Progress": "Progress",
+		"Finish": "Finish",
+		"NetworkFailure": "Falha na NetworkFailure",
+		"SoftwareFailure": "Falha no SoftwareFailure",
+		"RemoteAccess": "Acesso RemoteAccess",
+		"Documentation": "Documentation",
+		"PeriodicMaintenance": "Manutenção PeriodicMaintenance",
+		"Critical": "Critical",
+		"VIP": "VIP",
+		"TestDrive": "Teste TestDrive",
+		"Regular": "Regular",
+		"Inactive": "Inactive"
+	}
+}
