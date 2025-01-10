@@ -1,0 +1,41 @@
+<mat-toolbar>
+  <mat-toolbar-row class="toolbar-header">
+    <button mat-icon-button (click)="opened = !opened">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="header-controls">
+      <app-theme-switcher></app-theme-switcher>
+      <app-avatar></app-avatar>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav [opened]="opened" mode="side">
+    <mat-list>
+      @for (item of items; track $index) {
+      <mat-list-item (click)="toggleSubmenu(item)">
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        @if (item.path) {
+        <a [routerLink]="item.path" matListItemTitle> {{ item.label }} </a>
+        } @else {
+        <span>{{ item.label }}</span>
+        }
+      </mat-list-item>
+
+      @if (item.children && item.expanded) { @for (subitem of item.children;
+      track $index) {
+      <mat-list-item class="submenu">
+        <mat-icon matListItemIcon>{{ subitem.icon }}</mat-icon>
+        <a [routerLink]="subitem.path" matListItemTitle class="submenu-item">
+          {{ subitem.label }}
+        </a>
+      </mat-list-item>
+      } } }
+    </mat-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
