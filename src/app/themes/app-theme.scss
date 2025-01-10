@@ -1,0 +1,23 @@
+@use '@angular/material' as mat;
+@use './light_theme-colors.scss' as lightTheme;
+@use './dark_theme-colors.scss' as darkTheme;
+
+$app-light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: lightTheme.$primary-palette,
+      tertiary: lightTheme.$tertiary-palette,
+    ),
+  )
+);
+
+$app-dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: darkTheme.$primary-palette,
+      tertiary: darkTheme.$tertiary-palette,
+    ),
+  )
+);
