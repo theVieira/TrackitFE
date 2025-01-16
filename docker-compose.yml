@@ -1,0 +1,14 @@
+services:
+  trackit-frontend:
+    container_name: trackit_fe
+    build: .
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    networks:
+      - trackit-network
+
+networks:
+  trackit-network:
+    driver: bridge
