@@ -10,12 +10,14 @@ import { ClientDetailsComponent } from '@/pages/clients/client-details/client-de
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CreateNewTicketComponent } from './pages/tickets/create-new-ticket/create-new-ticket.component';
 import { CreateNewClientComponent } from './pages/clients/create-new-client/create-new-client.component';
+import { authenticationGuard } from './guards/authentication.guard';
 import { ProfileSettingsComponent } from './pages/profile-settings/profile-settings.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: SidenavComponent,
+    canActivate: [authenticationGuard],
     children: [
       {
         path: '',
