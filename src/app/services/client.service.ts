@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Client } from '@/@types/client.type';
+import { Client, ClientTag } from '@/@types/client.type';
 import { environment } from '@/../environments/environment.development';
 import { ListResponse } from '@/@types/list-response.type';
 
@@ -29,4 +29,24 @@ export class ClientService {
 
     return response;
   }
+
+  createNewClient({ cnpj, email, name, phone, tag }: CreateNewClientRequest) {
+    const response = this.httpClient.post(`${environment.api_url}/clients`, {
+      cnpj,
+      email,
+      name,
+      phone,
+      tag,
+    });
+
+    return response;
+  }
+}
+
+export interface CreateNewClientRequest {
+  name: string;
+  cnpj: string;
+  email: string;
+  phone: string;
+  tag: ClientTag;
 }
