@@ -14,4 +14,9 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 0.3rem #c0c0c086;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(80%);
+  }
 }
