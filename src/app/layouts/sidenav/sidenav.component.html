@@ -14,22 +14,16 @@
   <mat-sidenav [opened]="opened" mode="side">
     <mat-list>
       @for (item of items; track $index) {
-      <mat-list-item (click)="toggleSubmenu(item)">
+      <mat-list-item (click)="toggleSubmenu(item)" [routerLink]="item.path">
         <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-        @if (item.path) {
-        <a [routerLink]="item.path" matListItemTitle> {{ item.label }} </a>
-        } @else {
-        <span>{{ item.label }}</span>
-        }
+        <span matListItemTitle>{{ item.label }}</span>
       </mat-list-item>
 
       @if (item.children && item.expanded) { @for (subitem of item.children;
       track $index) {
-      <mat-list-item class="submenu">
+      <mat-list-item class="submenu" [routerLink]="subitem.path">
         <mat-icon matListItemIcon>{{ subitem.icon }}</mat-icon>
-        <a [routerLink]="subitem.path" matListItemTitle class="submenu-item">
-          {{ subitem.label }}
-        </a>
+        <span matListItemTitle>{{ subitem.label }}</span>
       </mat-list-item>
       } } }
     </mat-list>

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -36,6 +36,7 @@ export type MenuItem = {
 })
 export class SidenavComponent implements OnInit {
   private platformId = inject(PLATFORM_ID);
+  private router = inject(Router);
 
   private KEYBOARD_SHORTCUT = 'b';
 
@@ -54,5 +55,13 @@ export class SidenavComponent implements OnInit {
 
   toggleSubmenu(item: MenuItem): void {
     item.expanded = !item.expanded;
+  }
+
+  handleItemClick(item: MenuItem) {
+    if (item.path) {
+      this.router.navigate([item.path]);
+    } else {
+      this.toggleSubmenu(item);
+    }
   }
 }
