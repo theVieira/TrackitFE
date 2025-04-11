@@ -6,3 +6,7 @@ export interface Client extends BaseType {
   phone: string;
   email: string;
 }
+
+export enum ClientTag {
+  Vip = 'Vip',
+}
