@@ -44,8 +44,9 @@ export class SignInComponent implements OnInit {
     const response = this.authenticationService.signIn(this.form.getRawValue());
 
     response.subscribe({
-      next: ({ token }) => {
+      next: ({ token, tech }) => {
         localStorage.setItem(environment.token_name, token);
+        localStorage.setItem('tech', JSON.stringify(tech));
         this.toastService.success('Usuário autenticado com sucesso');
         this.router.navigate(['']);
       },
