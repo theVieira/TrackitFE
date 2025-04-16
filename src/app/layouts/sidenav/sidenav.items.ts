@@ -5,14 +5,7 @@ export const sidenavItems: MenuItem[] = [
   {
     icon: 'playlist_add_check_icon',
     label: 'Tickets',
-    children: [
-      { icon: 'sort', label: 'Lista', path: '/tickets' },
-      {
-        icon: 'add_circle',
-        label: 'Novo ticket',
-        path: '/create-new-ticket',
-      },
-    ],
+    path: '/tickets',
   },
   {
     icon: 'person',
@@ -27,6 +20,22 @@ export const sidenavItems: MenuItem[] = [
         label: 'Novo cliente',
         icon: 'add_circle',
         path: '/create-new-client',
+      },
+    ],
+  },
+  {
+    icon: 'person',
+    label: 'Técnicos',
+    children: [
+      {
+        label: 'Listar',
+        icon: 'sort',
+        path: '/techs',
+      },
+      {
+        label: 'Novo técnico',
+        icon: 'add_circle',
+        path: '/create-new-tech',
       },
     ],
   },

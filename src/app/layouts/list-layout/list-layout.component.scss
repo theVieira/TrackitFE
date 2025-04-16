@@ -1,0 +1,64 @@
+.filters {
+  ::ng-deep div {
+    max-height: fit-content;
+    display: flex;
+    gap: 0.5rem;
+
+    ::ng-deep mat-form-field {
+      max-width: 8rem;
+      max-height: 4.2rem;
+    }
+  }
+}
+
+mat-card {
+  mat-card-title {
+    filter: brightness(80%);
+  }
+
+  mat-card-content {
+    margin-top: 1rem;
+
+    table {
+      background: transparent;
+    }
+  }
+
+  mat-card-footer {
+    mat-card-actions {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+
+      mat-paginator {
+        background: none;
+      }
+    }
+  }
+}
+
+.clickable-row:hover {
+  background: var(--mat-tree-container-background-color);
+  cursor: pointer;
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem;
+}
+
+.not-found {
+  filter: brightness(80%);
+}
+
+@media (min-width: 1024px) {
+  .filters {
+    ::ng-deep div {
+      ::ng-deep mat-form-field {
+        max-width: none;
+      }
+    }
+  }
+}
