@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TicketPriority } from '@/@types/ticket.type';
-import { PriorityTranslate } from './priority-translate';
+import { Translate } from '@/utils/translate.util';
 
 @Component({
   selector: 'app-priority-filter',
@@ -19,17 +19,18 @@ import { PriorityTranslate } from './priority-translate';
   styleUrl: './priority.component.scss',
 })
 export class PriorityComponent implements OnChanges {
-  translate = new PriorityTranslate();
-  toppings = new FormControl<TicketPriority[]>([]);
-  toppingList: TicketPriority[] = [
+  @Input() defaultSelected: TicketPriority[] = [];
+  @Output() priorityChange = new EventEmitter<TicketPriority[]>();
+
+  protected translate = new Translate();
+
+  protected toppings = new FormControl<TicketPriority[]>([]);
+  protected toppingList: TicketPriority[] = [
     TicketPriority.Low,
     TicketPriority.Medium,
     TicketPriority.High,
     TicketPriority.Urgent,
   ];
-
-  @Input() defaultSelected: TicketPriority[] = [];
-  @Output() priorityChange = new EventEmitter<TicketPriority[]>();
 
   constructor() {
     this.toppings.valueChanges.subscribe((values) => {

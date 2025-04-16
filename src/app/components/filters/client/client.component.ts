@@ -19,12 +19,12 @@ import { Client } from '@/@types/client.type';
   ],
 })
 export class ClientComponent implements OnInit {
+  @Output() clientSelected = new EventEmitter<string>();
+
   private clientService = inject(ClientService);
 
   protected myControl = new FormControl<string>('');
   protected options: string[] = [];
-
-  @Output() clientSelected = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.clientService.getAllClients().subscribe(({ items }) => {

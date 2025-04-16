@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { TicketStatus } from '@/@types/ticket.type';
-import { StatusTranslate } from './status-translate';
+import { Translate } from '@/utils/translate.util';
 
 @Component({
   selector: 'app-status-filter',
@@ -20,16 +20,17 @@ import { StatusTranslate } from './status-translate';
   styleUrl: './status.component.scss',
 })
 export class StatusComponent implements OnChanges {
-  translate = new StatusTranslate();
-  toppings = new FormControl<TicketStatus[]>([]);
-  toppingList: TicketStatus[] = [
+  @Input() defaultSelected: TicketStatus[] = [];
+  @Output() statusChange = new EventEmitter<TicketStatus[]>();
+
+  protected translate = new Translate();
+
+  protected toppings = new FormControl<TicketStatus[]>([]);
+  protected toppingList: TicketStatus[] = [
     TicketStatus.Open,
     TicketStatus.Progress,
     TicketStatus.Finish,
   ];
-
-  @Input() defaultSelected: TicketStatus[] = [];
-  @Output() statusChange = new EventEmitter<TicketStatus[]>();
 
   constructor() {
     this.toppings.valueChanges.subscribe((values) => {

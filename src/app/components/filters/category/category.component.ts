@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TicketCategory } from '@/@types/ticket.type';
-import { CategoryTranslate } from './category-translate';
+import { Translate } from '@/utils/translate.util';
 
 @Component({
   selector: 'app-category-filter',
@@ -19,17 +19,18 @@ import { CategoryTranslate } from './category-translate';
   styleUrl: './category.component.scss',
 })
 export class CategoryComponent implements OnChanges {
-  translate = new CategoryTranslate();
-  toppings = new FormControl<TicketCategory[]>([]);
-  toppingList: TicketCategory[] = [
+  @Input() defaultSelected: TicketCategory[] = [];
+  @Output() categoryChange = new EventEmitter<TicketCategory[]>();
+
+  protected translate = new Translate();
+
+  protected toppings = new FormControl<TicketCategory[]>([]);
+  protected toppingList: TicketCategory[] = [
     TicketCategory.Daily,
     TicketCategory.Delivery,
     TicketCategory.Budget,
     TicketCategory.Maintenance,
   ];
-
-  @Input() defaultSelected: TicketCategory[] = [];
-  @Output() categoryChange = new EventEmitter<TicketCategory[]>();
 
   constructor() {
     this.toppings.valueChanges.subscribe((values) => {
