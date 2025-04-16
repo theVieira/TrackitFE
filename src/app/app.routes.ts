@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from '@/pages/home/home.component';
 import { SignInComponent } from '@/pages/sign-in/sign-in.component';
-import { UnauthorizedComponent } from '@/pages/unauthorized/unauthorized.component';
+import { UnauthorizedComponent } from '@/pages/errors/unauthorized/unauthorized.component';
 import { TicketsListComponent } from '@/pages/tickets/tickets-list/tickets-list.component';
 import { TicketDetailsComponent } from '@/pages/tickets/ticket-details/ticket-details.component';
 import { SidenavComponent } from '@/layouts/sidenav/sidenav.component';
 import { ClientsListComponent } from '@/pages/clients/clients-list/clients-list.component';
 import { ClientDetailsComponent } from '@/pages/clients/client-details/client-details.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { CreateNewTicketComponent } from './pages/tickets/create-new-ticket/create-new-ticket.component';
+import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
+import { CreateTicketComponent } from './pages/tickets/create-ticket/create-ticket.component';
 import { CreateNewClientComponent } from './pages/clients/create-new-client/create-new-client.component';
 import { authenticationGuard } from './guards/authentication.guard';
 import { ProfileSettingsComponent } from './pages/profile-settings/profile-settings.component';
@@ -48,11 +48,11 @@ export const routes: Routes = [
         component: NotFoundComponent,
       },
       {
-        path: 'create-new-ticket',
-        component: CreateNewTicketComponent,
+        path: 'create-ticket',
+        component: CreateTicketComponent,
       },
       {
-        path: 'create-new-client',
+        path: 'create-client',
         component: CreateNewClientComponent,
       },
       {
