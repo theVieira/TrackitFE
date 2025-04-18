@@ -57,7 +57,8 @@
                 }
               ],
               "outputHashing": "all",
-              "appShell": true
+              "appShell": true,
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,
