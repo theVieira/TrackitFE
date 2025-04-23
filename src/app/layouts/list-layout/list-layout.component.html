@@ -2,7 +2,6 @@
   <ng-content select="[filters]"></ng-content>
 </div>
 
-@if (!loading && data.length > 0) {
 <mat-card>
   <mat-card-header>
     <mat-card-title-group>
@@ -10,7 +9,7 @@
       <ng-content select="[title-group-button]"></ng-content>
     </mat-card-title-group>
   </mat-card-header>
-
+  @if (!loading && data.length > 0) {
   <mat-card-content>
     <table mat-table [dataSource]="data" class="mat-elevation-z8">
       @for (col of displayedColumns; track col) {
@@ -50,16 +49,17 @@
       />
     </mat-card-actions>
   </mat-card-footer>
+
+  } @else { @if (loading) {
+  <div class="spinner-container">
+    <mat-progress-spinner strokeWidth="3" mode="indeterminate" />
+  </div>
+  } @else {
+  <div class="not-found">
+    <p>
+      Ops! Não encontrei nada por aqui. Que tal tentar de novo com outros
+      critérios?
+    </p>
+  </div>
+  } }
 </mat-card>
-} @else { @if (loading) {
-<div class="spinner-container">
-  <mat-progress-spinner strokeWidth="3" mode="indeterminate" />
-</div>
-} @else {
-<div class="not-found">
-  <p>
-    Ops! Não encontrei nada por aqui. Que tal tentar de novo com outros
-    critérios?
-  </p>
-</div>
-} }

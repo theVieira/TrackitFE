@@ -51,6 +51,8 @@ mat-card {
 
 .not-found {
   filter: brightness(80%);
+  text-align: center;
+  padding: 1rem;
 }
 
 @media (min-width: 1024px) {
