@@ -1,62 +1,46 @@
 @if(ticket) {
 <mat-card>
   <mat-card-header>
-    <mat-card-subtitle class="tag">{{
-      translate.tTag(ticket.tag)
-    }}</mat-card-subtitle>
-    <mat-card-subtitle>
-      {{ ticket.client.name }} | {{ ticket.client.cnpj }}
-    </mat-card-subtitle>
-    <mat-card-subtitle class="secondary-subtitle">
-      <p>Criado em: {{ formatDate(ticket.createdAt) }} h</p>
-      <p>Criado por: {{ ticket.createdBy.name }}</p>
-    </mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <span class="card-content-item">
-      <p>
-        <span class="card-content-item-title">Status:</span>
-        {{ translate.tStatus(ticket.status) }}
-      </p>
-      <button mat-button>Avançar</button>
-    </span>
-    <span class="card-content-item">
-      <p>
-        <span class="card-content-item-title">Categoria:</span>
-        {{ translate.tCategory(ticket.category) }}
-      </p>
-      <button mat-button>Editar</button>
-    </span>
-    <span class="card-content-item">
-      <p>
-        <span class="card-content-item-title">Prioridade:</span>
-        {{ translate.tPriority(ticket.priority) }}
-      </p>
-      <button mat-button>Editar</button>
-    </span>
-    @if(ticket.attachments.length > 0 ) {
-    <span class="card-content-item">
-      <p>Anexos</p>
-      @for (attachment of ticket.attachments; track $index) {
-      <a
-        [href]="attachment.url"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="attachment"
-        >Descrição do anexo</a
-      >
-      }
-    </span>
-    }
-  </mat-card-content>
-  <mat-card-footer>
-    <mat-card-actions class="footer-actions">
-      <button mat-button>Adicionar anexo</button>
-      <button mat-button>Deletar</button>
-      <button mat-button (click)="backToTickets()" class="back-button">
-        Voltar
+    <mat-card-title-group>
+      <mat-card-title>
+        <mat-icon>confirmation_number</mat-icon>
+        <p>Detalhes - TK #{{ ticket.smallId }}</p>
+      </mat-card-title>
+    </mat-card-title-group>
+    <div class="header-actions no-print">
+      <button mat-button (click)="printPage()">
+        <mat-icon>print</mat-icon>
+        <span>Imprimir</span>
       </button>
-    </mat-card-actions>
-  </mat-card-footer>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <section class="information-tags">
+      <span [style]="statusStyle">
+        Status: {{ translate.tStatus(ticket.status) }}
+      </span>
+      <span [style]="priorityStyle">
+        Prioridade: {{ translate.tPriority(ticket.priority) }}
+      </span>
+      <span [style]="categoryStyle">
+        Categoria: {{ translate.tCategory(ticket.category) }}
+      </span>
+    </section>
+
+    <section class="description">
+      <h4>Descrição</h4>
+      <p>{{ ticket.description }}</p>
+      <span>
+        <mat-icon>sell</mat-icon>
+        {{ translate.tTag(ticket.tag) }}
+      </span>
+    </section>
+
+    <section class="client">
+      <h4>Cliente</h4>
+      <p>{{ ticket.client.name }}</p>
+    </section>
+  </mat-card-content>
 </mat-card>
 }
