@@ -1,59 +1,66 @@
 import {
-  AfterViewInit,
   Component,
   inject,
   OnInit,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Client } from '@/@types/client.type';
 import { ClientService } from '@/services/client.service';
 import { ClientComponent } from '@/components/filters/client/client.component';
 import { Router } from '@angular/router';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { PageEvent } from '@angular/material/paginator';
+import { ListLayoutComponent } from '../../../layouts/list-layout/list-layout.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-clients',
-  imports: [MatTableModule, ClientComponent, MatPaginatorModule],
+  imports: [MatButtonModule, ClientComponent, ListLayoutComponent],
   templateUrl: './clients-list.component.html',
   styleUrl: './clients-list.component.scss',
 })
-export class ClientsListComponent implements OnInit, AfterViewInit {
+export class ClientsListComponent implements OnInit {
   private clientService = inject(ClientService);
   private router = inject(Router);
 
-  protected displayedColumns: string[] = ['id', 'name', 'cnpj'];
-  protected dataSource = new MatTableDataSource<Client>([]);
-
+  protected data: Client[] = [];
+  protected loading = false;
+  protected pageEvent!: PageEvent;
+  protected pageIndex = 0;
+  protected pageSize = 10;
+  protected length = 50;
   protected defaultClientSelected: string = '';
 
-  protected length = 0;
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('name', { static: true }) nameTemplate!: TemplateRef<any>;
+  @ViewChild('name', { static: true }) cnpjTemplate!: TemplateRef<any>;
 
   ngOnInit(): void {
     this.getClients();
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
   }
 
   getClients() {
     this.clientService
       .getAllClients(this.defaultClientSelected)
       .subscribe(({ items, total }) => {
-        this.dataSource.data = items;
+        this.data = items;
         this.length = total;
       });
   }
 
-  onClickRow({ id }: Client) {
+  handlePageEvent(e: PageEvent) {
+    console.log(e);
+  }
+
+  showClientInfo({ id }: Client) {
     this.router.navigate([`/client/${id}`]);
   }
 
-  onClientSelected(client: string) {
+  onClientChange(client: string) {
     this.defaultClientSelected = client;
     this.getClients();
+  }
+
+  createClient() {
+    this.router.navigate([`/create-client`]);
   }
 }

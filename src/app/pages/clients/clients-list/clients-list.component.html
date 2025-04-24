@@ -1,41 +1,30 @@
-<div>
-  <app-client-filter (clientSelected)="onClientSelected($event)" />
-</div>
+<app-list-layout
+  [title]="'Clients'"
+  [data]="data"
+  [loading]="loading"
+  [pageIndex]="pageIndex"
+  [pageSize]="pageSize"
+  [length]="length"
+  (pageChange)="handlePageEvent($event)"
+  (rowClicked)="showClientInfo($event)"
+  [displayedColumns]="['name', 'cnpj']"
+  [columnLabels]="{
+    name: 'Nome',
+    cnpj: 'CNPJ',
+  }"
+  [columnTemplates]="{
+    name: nameTemplate,
+    cnpj: cnpjTemplate,
+  }"
+>
+  <div filters>
+    <app-client-filter (clientSelected)="onClientChange($event)" />
+  </div>
 
-@if(dataSource.data.length > 0) {
-<table mat-table [dataSource]="dataSource">
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>Id</th>
-    <td mat-cell *matCellDef="let client">
-      {{ client.smallId }}
-    </td>
-  </ng-container>
+  <button mat-button title-group-button (click)="createClient()">
+    Novo cliente
+  </button>
 
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Nome</th>
-    <td mat-cell *matCellDef="let client">
-      {{ client.name }}
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="cnpj">
-    <th mat-header-cell *matHeaderCellDef>CNPJ</th>
-    <td mat-cell *matCellDef="let client">
-      {{ client.cnpj }}
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr
-    mat-row
-    *matRowDef="let row; columns: displayedColumns"
-    class="clickable-row"
-    (click)="onClickRow(row)"
-  ></tr>
-</table>
-
-<mat-paginator hidePageSize aria-label="Select page of periodic elements" />
-
-} @else {
-<div>Não encontrei nenhum cliente...</div>
-}
+  <ng-template #nameTemplate let-client>{{ client.name }}</ng-template>
+  <ng-template #cnpjTemplate let-client>{{ client.cnpj }}</ng-template>
+</app-list-layout>

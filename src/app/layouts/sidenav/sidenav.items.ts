@@ -10,18 +10,7 @@ export const sidenavItems: MenuItem[] = [
   {
     icon: 'person',
     label: 'Clientes',
-    children: [
-      {
-        label: 'Lista',
-        icon: 'sort',
-        path: '/clients',
-      },
-      {
-        label: 'Novo cliente',
-        icon: 'add_circle',
-        path: '/create-new-client',
-      },
-    ],
+    path: '/clients',
   },
   {
     icon: 'person',
