@@ -23,10 +23,10 @@ import { ToastrService } from 'ngx-toastr';
     MatIconModule,
     MatSelectModule,
   ],
-  templateUrl: './create-new-client.component.html',
-  styleUrl: './create-new-client.component.scss',
+  templateUrl: './create-client.component.html',
+  styleUrl: './create-client.component.scss',
 })
-export class CreateNewClientComponent {
+export class CreateClientComponent {
   private clientServices = inject(ClientService);
 
   private formBuilder = inject(NonNullableFormBuilder);

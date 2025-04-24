@@ -9,7 +9,7 @@ import { ClientsListComponent } from '@/pages/clients/clients-list/clients-list.
 import { ClientDetailsComponent } from '@/pages/clients/client-details/client-details.component';
 import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
 import { CreateTicketComponent } from './pages/tickets/create-ticket/create-ticket.component';
-import { CreateNewClientComponent } from './pages/clients/create-new-client/create-new-client.component';
+import { CreateClientComponent } from './pages/clients/create-client/create-client.component';
 import { authenticationGuard } from './guards/authentication.guard';
 import { ProfileSettingsComponent } from './pages/profile-settings/profile-settings.component';
 
@@ -53,7 +53,7 @@ export const routes: Routes = [
       },
       {
         path: 'create-client',
-        component: CreateNewClientComponent,
+        component: CreateClientComponent,
       },
       {
         path: 'profile',
