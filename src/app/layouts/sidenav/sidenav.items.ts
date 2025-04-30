@@ -15,17 +15,6 @@ export const sidenavItems: MenuItem[] = [
   {
     icon: 'person',
     label: 'Técnicos',
-    children: [
-      {
-        label: 'Listar',
-        icon: 'sort',
-        path: '/techs',
-      },
-      {
-        label: 'Novo técnico',
-        icon: 'add_circle',
-        path: '/create-new-tech',
-      },
-    ],
+    path: '/techs',
   },
 ];
