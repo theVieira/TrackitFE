@@ -39,11 +39,14 @@ export class ClientsListComponent implements OnInit {
   }
 
   getClients() {
+    this.loading = true;
+
     this.clientService
       .getAllClients(this.defaultClientSelected)
       .subscribe(({ items, total }) => {
         this.data = items;
         this.length = total;
+        this.loading = false;
       });
   }
 
