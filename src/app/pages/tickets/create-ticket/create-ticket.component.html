@@ -1,1 +1,17 @@
-<p>create-new-ticket works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>Crie um novo ticket</mat-card-title>
+      <mat-card-subtitle
+        >Preencha o formulário para criar um novo chamado</mat-card-subtitle
+      >
+    </mat-card-title-group>
+  </mat-card-header>
+  <form [formGroup]="form" (submit)="onSubmit($event)">
+    <mat-label>Cliente</mat-label>
+    <app-client-filter
+      formControlName="client"
+      (clientSelected)="onClientSelected($event)"
+    />
+  </form>
+</mat-card>
