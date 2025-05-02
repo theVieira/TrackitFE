@@ -1,6 +1,7 @@
 import { Attachment } from './attachment.type';
 import { BaseType } from './base.type';
 import { Client } from './client.type';
+import { Note } from './note.type';
 import { Tech } from './tech.type';
 
 export interface Ticket extends BaseType {
@@ -12,6 +13,7 @@ export interface Ticket extends BaseType {
   priority: TicketPriority;
   tag: TicketTag;
   attachments: Attachment[];
+  notes: Note[];
 }
 
 export enum TicketStatus {
