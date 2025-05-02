@@ -1,9 +1,9 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title-group>
-      <mat-card-title>Crie um novo cliente</mat-card-title>
+      <mat-card-title>Cadastrar um novo cliente</mat-card-title>
       <mat-card-subtitle>
-        Preencha as informações do formulário
+        Preencha os dados do cliente para criar um novo cadastro
       </mat-card-subtitle>
     </mat-card-title-group>
   </mat-card-header>
@@ -73,10 +73,14 @@
         </mat-select>
       </mat-form-field>
       <mat-card-actions>
-        <button type="button" (click)="cleanForm()" mat-icon-button>
+        <button type="button" (click)="cleanForm()" mat-button>
           <mat-icon> delete </mat-icon>
+          Cancelar
         </button>
-        <button type="submit" mat-button>Criar</button>
+        <button type="submit" mat-button>
+          <mat-icon>save</mat-icon>
+          Salvar cliente
+        </button>
       </mat-card-actions>
     </form>
   </mat-card-content>

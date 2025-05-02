@@ -45,37 +45,34 @@ export class CreateClientComponent {
   protected onSubmit(e: Event) {
     e.preventDefault();
 
-    if (!this.form.valid) {
-      this.toastService.error(
+    if (this.form.valid) {
+      const rawValue = this.form.getRawValue();
+
+      const response = this.clientServices.createNewClient({
+        ...rawValue,
+        cnpj: String(rawValue.cnpj),
+        phone: String(rawValue.phone),
+      });
+
+      return response.subscribe({
+        next: () => {
+          this.toastService.success('Cliente criado com sucesso');
+          return this.cleanForm();
+        },
+        error: (err) => {
+          console.log(err);
+          return this.toastService.error('Ocorreu um erro ao criar o cliente');
+        },
+      });
+    } else {
+      return this.toastService.error(
         'Verifique e tente novamente',
         'O formulário não é válido'
       );
-
-      return;
     }
-
-    const rawValue = this.form.getRawValue();
-
-    const response = this.clientServices.createNewClient({
-      ...rawValue,
-      cnpj: String(rawValue.cnpj),
-      phone: String(rawValue.phone),
-    });
-
-    response.subscribe({
-      next: () => {
-        this.toastService.success('Cliente criado com sucesso');
-        this.form.reset();
-        return;
-      },
-      error: (err) => {
-        console.log(err);
-        this.toastService.error('Ocorreu um erro ao criar o cliente');
-      },
-    });
   }
 
   protected cleanForm() {
-    this.form.reset();
+    return this.form.reset();
   }
 }
