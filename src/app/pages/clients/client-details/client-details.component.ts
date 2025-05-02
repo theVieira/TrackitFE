@@ -3,6 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ClientService } from '@/services/client.service';
 import { Client } from '@/@types/client.type';
 import { MatCardModule } from '@angular/material/card';
+import { FormatDate } from '@/utils/format-date.util';
+import {
+  Ticket,
+  TicketCategory,
+  TicketPriority,
+  TicketStatus,
+} from '@/@types/ticket.type';
+import { TicketsService } from '@/services/tickets.service';
 
 @Component({
   selector: 'app-client-details',
@@ -13,9 +21,11 @@ import { MatCardModule } from '@angular/material/card';
 export class ClientDetailsComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private clientServices = inject(ClientService);
-  private route = inject(Router);
+  private ticketServices = inject(TicketsService);
 
+  protected formatDate = new FormatDate();
   protected client!: Client | null;
+  protected tickets: Ticket[] = [];
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -25,5 +35,28 @@ export class ClientDetailsComponent implements OnInit {
     this.clientServices
       .getClientById(id)
       .subscribe((data) => (this.client = data));
+
+    this.getTicketsOpen();
+  }
+
+  getTicketsOpen() {
+    if (this.client) {
+      this.ticketServices.GetAllTickets(
+        [TicketStatus.Open],
+        [
+          TicketCategory.Budget,
+          TicketCategory.Daily,
+          TicketCategory.Delivery,
+          TicketCategory.Maintenance,
+        ],
+        [
+          TicketPriority.High,
+          TicketPriority.Low,
+          TicketPriority.Medium,
+          TicketPriority.Urgent,
+        ],
+        this.client.name
+      );
+    }
   }
 }
