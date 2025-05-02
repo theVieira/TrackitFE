@@ -7,39 +7,119 @@
         <p>Detalhes - TK #{{ ticket.smallId }}</p>
       </mat-card-title>
     </mat-card-title-group>
-    <div class="header-actions no-print">
-      <button mat-button (click)="printPage()">
-        <mat-icon>print</mat-icon>
-        <span>Imprimir</span>
-      </button>
-    </div>
   </mat-card-header>
 
   <mat-card-content>
-    <section class="information-tags">
-      <span [style]="statusStyle">
-        Status: {{ translate.tStatus(ticket.status) }}
-      </span>
-      <span [style]="priorityStyle">
-        Prioridade: {{ translate.tPriority(ticket.priority) }}
-      </span>
-      <span [style]="categoryStyle">
-        Categoria: {{ translate.tCategory(ticket.category) }}
-      </span>
+    <section class="information-section">
+      <section class="information-tags">
+        <span [style]="statusStyle">
+          Status: {{ translate.tStatus(ticket.status) }}
+        </span>
+        <span [style]="priorityStyle">
+          Prioridade: {{ translate.tPriority(ticket.priority) }}
+        </span>
+        <span [style]="categoryStyle">
+          Categoria: {{ translate.tCategory(ticket.category) }}
+        </span>
+      </section>
+
+      <section class="description">
+        <h4>Descrição</h4>
+        <p>{{ ticket.description }}</p>
+        <span>
+          <mat-icon>sell</mat-icon>
+          {{ translate.tTag(ticket.tag) }}
+        </span>
+      </section>
+
+      <section class="client">
+        <h4>Cliente</h4>
+        <p>{{ ticket.client.name }}</p>
+      </section>
+
+      <section class="notes">
+        <h4>Notas</h4>
+        @if (ticket.notes.length > 0 ) { @for (note of ticket.notes; track
+        $index) {
+        {{ note.content }}
+        } } @else {
+        <p>Nenhuma nota encontrada</p>
+        }
+      </section>
+
+      <section class="attachments">
+        <h4>Anexos</h4>
+        @if (ticket.attachments.length > 0 ) { @for (attachment of
+        ticket.attachments; track $index) {
+        <mat-card>
+          <a
+            href="[attachment.url]"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="attachment"
+          >
+            {{ attachment.filename }}
+            <mat-icon>download</mat-icon>
+          </a>
+        </mat-card>
+        } } @else {
+        <p>Nenhum anexo encontrado</p>
+        }
+      </section>
+      <section class="timeline">
+        <h4>Timeline</h4>
+        <div class="creation">
+          <p>Criação</p>
+          <span>{{ formatDate.format(ticket.createdAt) }}</span>
+          <p>{{ ticket.createdBy.name }}</p>
+        </div>
+      </section>
     </section>
 
-    <section class="description">
-      <h4>Descrição</h4>
-      <p>{{ ticket.description }}</p>
-      <span>
-        <mat-icon>sell</mat-icon>
-        {{ translate.tTag(ticket.tag) }}
-      </span>
-    </section>
-
-    <section class="client">
-      <h4>Cliente</h4>
-      <p>{{ ticket.client.name }}</p>
+    <section class="action-section no-print">
+      <mat-card-title> Ações </mat-card-title>
+      <div class="action">
+        <button mat-button (click)="printPage()">
+          <mat-icon>print</mat-icon>
+          <span>Imprimir</span>
+        </button>
+      </div>
+      <div class="action">
+        @switch (ticket.status) { @case (ticketStatus.Open) {
+        <button mat-button>
+          <mat-icon>update</mat-icon>
+          Marcar em progresso
+        </button>
+        } @case (ticketStatus.Progress) {
+        <button mat-button>
+          <mat-icon>update</mat-icon>
+          Finalizar
+        </button>
+        } @case (ticketStatus.Finish) {
+        <button mat-button>
+          <mat-icon>update</mat-icon>
+          Reabrir
+        </button>
+        } }
+      </div>
+      <div class="action">
+        <button mat-button>
+          <mat-icon>comment</mat-icon>
+          Adicionar nota
+        </button>
+      </div>
+      <div class="action">
+        <button mat-button>
+          <mat-icon>attach_file</mat-icon>
+          Adicionar anexo
+        </button>
+      </div>
+      <div class="action">
+        <button mat-button>
+          <mat-icon>delete</mat-icon>
+          Deletar
+        </button>
+      </div>
     </section>
   </mat-card-content>
 </mat-card>

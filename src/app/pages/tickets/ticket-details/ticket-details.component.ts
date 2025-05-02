@@ -12,6 +12,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { Translate } from '@/utils/translate.util';
 import { MatIconModule } from '@angular/material/icon';
+import { FormatDate } from '@/utils/format-date.util';
 
 @Component({
   selector: 'app-ticket-details',
@@ -27,6 +28,8 @@ export class TicketDetailsComponent implements OnInit {
 
   protected ticket!: Ticket | null;
   protected translate = new Translate();
+  protected formatDate = new FormatDate();
+  protected ticketStatus = TicketStatus;
 
   protected statusStyle!: string;
   protected priorityStyle!: string;
@@ -63,13 +66,13 @@ export class TicketDetailsComponent implements OnInit {
     if (this.ticket)
       switch (this.ticket.status) {
         case TicketStatus.Open:
-          return (this.statusStyle = 'background: red');
+          return (this.statusStyle = 'background: #a62f26');
         case TicketStatus.Progress:
-          return (this.statusStyle = 'background: orange');
+          return (this.statusStyle = 'background: #b09321');
         case TicketStatus.Finish:
-          return (this.statusStyle = 'background: green');
+          return (this.statusStyle = 'background: #6aab20');
         case TicketStatus.Cancelled:
-          return (this.statusStyle = 'background: gray');
+          return (this.statusStyle = 'background: #545c4a');
       }
 
     return;
@@ -79,13 +82,13 @@ export class TicketDetailsComponent implements OnInit {
     if (this.ticket)
       switch (this.ticket.category) {
         case TicketCategory.Daily:
-          return (this.categoryStyle = 'background: red');
+          return (this.categoryStyle = 'background: #a62f26');
         case TicketCategory.Budget:
-          return (this.categoryStyle = 'background: red');
+          return (this.categoryStyle = 'background: #3a65a6');
         case TicketCategory.Delivery:
-          return (this.categoryStyle = 'background: red');
+          return (this.categoryStyle = 'background: #6aab20');
         case TicketCategory.Maintenance:
-          return (this.categoryStyle = 'background: red');
+          return (this.categoryStyle = 'background: #bf642c');
       }
 
     return;
@@ -95,13 +98,13 @@ export class TicketDetailsComponent implements OnInit {
     if (this.ticket)
       switch (this.ticket.priority) {
         case TicketPriority.Low:
-          return (this.priorityStyle = 'background: red');
+          return (this.priorityStyle = 'background: #3a65a6');
         case TicketPriority.Medium:
-          return (this.priorityStyle = 'background: red');
+          return (this.priorityStyle = 'background: #6aab20');
         case TicketPriority.High:
-          return (this.priorityStyle = 'background: red');
+          return (this.priorityStyle = 'background: #bf642c');
         case TicketPriority.Urgent:
-          return (this.priorityStyle = 'background: red');
+          return (this.priorityStyle = 'background: #a62f26');
       }
 
     return;
