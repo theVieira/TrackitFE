@@ -3,45 +3,74 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
 import { ClientService } from '@/services/client.service';
 import { Client } from '@/@types/client.type';
+import { startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-client-filter',
   templateUrl: 'client.component.html',
-  styleUrl: 'client.component.scss',
+  styleUrls: ['client.component.scss'],
+  standalone: true,
   imports: [
+    CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    ReactiveFormsModule,
   ],
 })
 export class ClientComponent implements OnInit {
-  @Output() clientSelected = new EventEmitter<string>();
+  @Output() clientSelected = new EventEmitter<Client>();
 
   private clientService = inject(ClientService);
 
-  protected myControl = new FormControl<string>('');
-  protected options: string[] = [];
+  protected myControl = new FormControl<string | Client>('');
+  protected allOptions: Client[] = [];
+  protected filteredOptions: Client[] = [];
 
   ngOnInit(): void {
+    const allOption: Client = {
+      name: 'Todos',
+      id: '',
+      cnpj: '',
+      createdAt: new Date(),
+      email: '',
+      phone: '',
+      smallId: '',
+    };
+
     this.clientService.getAllClients().subscribe(({ items }) => {
-      this.options = items.map(({ name }: Client) => name);
-      this.options.unshift('Todos');
+      this.allOptions = [allOption, ...items];
+      this.filteredOptions = this.allOptions;
     });
 
-    this.myControl.valueChanges.subscribe((selectedValue) => {
-      if (selectedValue && this.options.includes(selectedValue)) {
-        if (selectedValue == 'Todos') {
-          this.clientSelected.emit('');
-          return;
-        }
+    this.myControl.valueChanges.pipe(startWith('')).subscribe((value) => {
+      const name =
+        typeof value === 'string'
+          ? value.toLowerCase()
+          : value?.name.toLowerCase();
+      this.filteredOptions = this.allOptions.filter(({ name: optName }) =>
+        optName.toLowerCase().includes(name ?? '')
+      );
 
-        this.clientSelected.emit(selectedValue);
-        return;
+      const selected = this.allOptions.find(
+        ({ name: optName }) => optName.toLowerCase() === name
+      );
+
+      if (selected) {
+        if (selected.name === 'Todos') {
+          this.clientSelected.emit({ ...allOption, name: '' });
+        } else {
+          this.clientSelected.emit(selected as Client);
+        }
       }
     });
+  }
+
+  displayFn(client: Client | { name: string } | string): string {
+    return typeof client === 'string' ? client : client?.name ?? '';
   }
 }
