@@ -51,16 +51,29 @@
         <h4>Anexos</h4>
         @if (ticket.attachments.length > 0 ) { @for (attachment of
         ticket.attachments; track $index) {
-        <mat-card>
-          <a
-            href="[attachment.url]"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="attachment"
-          >
-            {{ attachment.filename }}
-            <mat-icon>download</mat-icon>
-          </a>
+        <mat-card class="attachment">
+          <mat-card-title-group>
+            <mat-card-title>Arquivo: {{ attachment.filename }}</mat-card-title>
+            <mat-card-subtitle
+              >Anexado: {{ formatDate.format(attachment.createdAt) }} --
+              {{ attachment.uploadedBy.name }}
+            </mat-card-subtitle>
+            <mat-card-subtitle
+              >Tamanho:
+              {{ (attachment.size / 100000).toString().slice(0, 4) }}
+              MB</mat-card-subtitle
+            >
+          </mat-card-title-group>
+          <mat-card-actions>
+            <button mat-button>
+              <mat-icon>delete</mat-icon>
+              Deletar
+            </button>
+            <button mat-button (click)="downloadFile(attachment)">
+              <mat-icon>download</mat-icon>
+              Baixar
+            </button>
+          </mat-card-actions>
         </mat-card>
         } } @else {
         <p>Nenhum anexo encontrado</p>
@@ -109,7 +122,7 @@
         </button>
       </div>
       <div class="action">
-        <button mat-button>
+        <button mat-button (click)="openAddAttachmentDialog()">
           <mat-icon>attach_file</mat-icon>
           Adicionar anexo
         </button>

@@ -1,4 +1,10 @@
-import { Component, ElementRef, inject, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TicketsService } from '@/services/tickets.service';
 import {
@@ -13,6 +19,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { Translate } from '@/utils/translate.util';
 import { MatIconModule } from '@angular/material/icon';
 import { FormatDate } from '@/utils/format-date.util';
+import { environment } from 'src/environments/environment';
+import { Attachment } from '@/@types/attachment.type';
+import { MatDialog } from '@angular/material/dialog';
+import { AddAttachmentDialogComponent } from './add-attachment-dialog/add-attachment-dialog.component';
 
 @Component({
   selector: 'app-ticket-details',
@@ -21,11 +31,13 @@ import { FormatDate } from '@/utils/format-date.util';
   styleUrl: './ticket-details.component.scss',
 })
 export class TicketDetailsComponent implements OnInit {
+  readonly dialog = inject(MatDialog);
   private hostElement = inject(ElementRef);
   private ticketsService = inject(TicketsService);
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
 
+  protected env = environment;
   protected ticket!: Ticket | null;
   protected translate = new Translate();
   protected formatDate = new FormatDate();
@@ -108,5 +120,23 @@ export class TicketDetailsComponent implements OnInit {
       }
 
     return;
+  }
+
+  downloadFile({ id, filename }: Attachment) {
+    this.ticketsService.downloadAttachment(id).subscribe((data) => {
+      if (!data) return;
+
+      const url = window.URL.createObjectURL(data);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      link.click();
+
+      window.URL.revokeObjectURL(url);
+    });
+  }
+
+  openAddAttachmentDialog() {
+    this.dialog.open(AddAttachmentDialogComponent);
   }
 }

@@ -55,13 +55,31 @@ mat-card {
       }
 
       section.attachments {
-        a.attachment {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0.5rem 1rem;
-          background: var(--mdc-linear-progress-track-color);
-          border-radius: 1.2rem;
+        h4 {
+          padding-bottom: 0.6rem;
+        }
+
+        mat-card.attachment {
+          padding: 0.4rem 1rem;
+          max-width: max-content;
+          box-shadow: 0 0 3px var(--mdc-linear-progress-track-color);
+
+          mat-card-title-group {
+            mat-card-title {
+              font-size: 1rem;
+            }
+            mat-card-subtitle {
+              font-size: 0.8rem;
+              filter: brightness(80%);
+            }
+          }
+
+          mat-card-actions {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+            justify-content: end;
+          }
         }
       }
 
