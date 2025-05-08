@@ -41,4 +41,13 @@ export class TicketsService {
 
     return response;
   }
+
+  downloadAttachment(id: string) {
+    const response = this.httpClient.get(
+      `${environment.api_url}/tickets/attachment/${id}`,
+      { responseType: 'blob' as 'blob' }
+    );
+
+    return response;
+  }
 }
