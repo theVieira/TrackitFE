@@ -58,8 +58,8 @@ export class ClientsListComponent implements OnInit {
     this.router.navigate([`/client/${id}`]);
   }
 
-  onClientChange(client: string) {
-    this.defaultClientSelected = client;
+  onClientChange(client: Client | null) {
+    if (client) this.defaultClientSelected = client.name;
     this.getClients();
   }
 

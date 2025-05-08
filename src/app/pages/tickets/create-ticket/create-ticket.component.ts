@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ClientComponent } from '../../../components/filters/client/client.component';
+import { Client } from '@/@types/client.type';
 
 @Component({
   selector: 'app-create-new-ticket',
@@ -34,8 +35,7 @@ export class CreateTicketComponent {
 
   onSubmit(e: Event) {}
 
-  onClientSelected(e: string) {
-    this.form.controls.client.setValue(e);
-    console.log(this.form.controls.client.value);
+  onClientSelected(client: Client | null) {
+    if (client) this.form.controls.client.setValue(client.name);
   }
 }

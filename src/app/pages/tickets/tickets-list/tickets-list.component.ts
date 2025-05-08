@@ -23,6 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ListLayoutComponent } from '../../../layouts/list-layout/list-layout.component';
 import { Translate } from '@/utils/translate.util';
+import { Client } from '@/@types/client.type';
 
 @Component({
   selector: 'app-tickets-list',
@@ -115,8 +116,9 @@ export class TicketsListComponent implements OnInit {
     this.fetchData();
   }
 
-  onClientChange(client: string) {
-    this.clientFilter = client;
+  onClientChange(client: Client) {
+    if (client) this.clientFilter = client.name;
+
     this.fetchData();
   }
 
