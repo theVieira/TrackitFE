@@ -10,13 +10,13 @@ import { ThemeSwitcherComponent } from '@/components/theme-switcher/theme-switch
 import { AvatarComponent } from '@/components/avatar/avatar.component';
 import { sidenavItems } from './sidenav.items';
 
-export type MenuItem = {
+export interface MenuItem {
   icon: string;
   label: string;
   path?: string;
   children?: MenuItem[];
   expanded?: boolean;
-};
+}
 
 @Component({
   selector: 'app-sidenav',

@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
 import { AuthenticationService } from '@/services/authentication.service';
 
-export const authorizationGuard: CanActivateFn = (route, state) => {
+export const authorizationGuard: CanActivateFn = (route) => {
   const authenticationService = inject(AuthenticationService);
 
   const requiredRoles = route.data['roles'] as string[];

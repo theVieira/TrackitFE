@@ -3,6 +3,10 @@
 
 @use 'sass:map';
 @use '@angular/material' as mat;
+@use './app-theme.scss' as theme;
+
+@include mat.core();
+@include mat.all-component-themes(theme.$app-light-theme);
 
 // Note: Color palettes are generated from primary: #3F51B5, secondary: #E91E63, tertiary: #F44336, neutral: #2196F3
 $_palettes: (

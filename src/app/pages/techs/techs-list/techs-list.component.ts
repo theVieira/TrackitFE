@@ -28,7 +28,7 @@ export class TechsListComponent implements OnInit {
   protected pageIndex = 0;
   protected length = 50;
 
-  @ViewChild('name', { static: true }) nameTemplate!: TemplateRef<any>;
+  @ViewChild('name', { static: true }) nameTemplate!: TemplateRef<unknown>;
 
   ngOnInit(): void {
     this.getTechs();

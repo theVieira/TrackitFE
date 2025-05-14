@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 mat-sidenav-container {
   height: calc(100vh - 56px);
 }
@@ -17,11 +19,11 @@ mat-list-item:hover {
 }
 
 :host-context(body.light-theme) mat-list-item:hover {
-  background: darken(#fafafa, 5%);
+  background: color.adjust(#fafafa, $lightness: 5%);
 }
 
 :host-context(body.dark-theme) mat-list-item:hover {
-  background: darken(#303030, 5%);
+  background: color.adjust(#303030, $lightness: 5%);
 }
 
 .toolbar-header {

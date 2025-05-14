@@ -86,6 +86,13 @@
           <span>{{ formatDate.format(ticket.createdAt) }}</span>
           <p>{{ ticket.createdBy.name }}</p>
         </div>
+        <div>
+          <p>Progresso</p>
+          @for (progress of ticket.progress; track $index) {
+          <span>{{ formatDate.format(progress.createdAt) }}</span>
+          <p>{{ progress.author.name }}</p>
+          }
+        </div>
       </section>
     </section>
 
@@ -116,7 +123,7 @@
         } }
       </div>
       <div class="action">
-        <button mat-button>
+        <button mat-button (click)="openAddNoteDialog()">
           <mat-icon>comment</mat-icon>
           Adicionar nota
         </button>

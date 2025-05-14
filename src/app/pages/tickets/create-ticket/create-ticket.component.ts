@@ -33,7 +33,9 @@ export class CreateTicketComponent {
     client: ['', Validators.required],
   });
 
-  onSubmit(e: Event) {}
+  onSubmit(e: Event) {
+    console.log(e);
+  }
 
   onClientSelected(client: Client | null) {
     if (client) this.form.controls.client.setValue(client.name);

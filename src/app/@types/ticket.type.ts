@@ -3,6 +3,7 @@ import { BaseType } from './base.type';
 import { Client } from './client.type';
 import { Note } from './note.type';
 import { Tech } from './tech.type';
+import { TimeAction } from './time-action.type';
 
 export interface Ticket extends BaseType {
   client: Client;
@@ -14,6 +15,7 @@ export interface Ticket extends BaseType {
   tag: TicketTag;
   attachments: Attachment[];
   notes: Note[];
+  progress: TimeAction[];
 }
 
 export enum TicketStatus {

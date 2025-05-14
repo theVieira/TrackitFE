@@ -13,7 +13,8 @@ export class StorageService {
 
     try {
       return JSON.parse(savedItem);
-    } catch (error) {
+    } catch (e) {
+      console.log(e);
       return JSON.parse(savedItem) as unknown as T;
     }
   }

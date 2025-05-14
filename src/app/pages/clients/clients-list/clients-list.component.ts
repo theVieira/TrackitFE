@@ -29,10 +29,10 @@ export class ClientsListComponent implements OnInit {
   protected pageIndex = 0;
   protected pageSize = 10;
   protected length = 50;
-  protected defaultClientSelected: string = '';
+  protected defaultClientSelected = '';
 
-  @ViewChild('name', { static: true }) nameTemplate!: TemplateRef<any>;
-  @ViewChild('name', { static: true }) cnpjTemplate!: TemplateRef<any>;
+  @ViewChild('name', { static: true }) nameTemplate!: TemplateRef<unknown>;
+  @ViewChild('name', { static: true }) cnpjTemplate!: TemplateRef<unknown>;
 
   ngOnInit(): void {
     this.getClients();

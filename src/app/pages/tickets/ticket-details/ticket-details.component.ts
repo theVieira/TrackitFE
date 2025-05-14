@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { Component, ElementRef, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TicketsService } from '@/services/tickets.service';
 import {
@@ -23,6 +17,7 @@ import { environment } from 'src/environments/environment';
 import { Attachment } from '@/@types/attachment.type';
 import { MatDialog } from '@angular/material/dialog';
 import { AddAttachmentDialogComponent } from './add-attachment-dialog/add-attachment-dialog.component';
+import { AddNoteDialogComponent } from './add-note-dialog/add-note-dialog.component';
 
 @Component({
   selector: 'app-ticket-details',
@@ -138,5 +133,9 @@ export class TicketDetailsComponent implements OnInit {
 
   openAddAttachmentDialog() {
     this.dialog.open(AddAttachmentDialogComponent);
+  }
+
+  openAddNoteDialog() {
+    this.dialog.open(AddNoteDialogComponent);
   }
 }

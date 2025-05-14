@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ClientService } from '@/services/client.service';
 import { Client } from '@/@types/client.type';
 import { MatCardModule } from '@angular/material/card';

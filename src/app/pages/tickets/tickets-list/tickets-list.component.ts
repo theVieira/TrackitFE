@@ -47,7 +47,7 @@ export class TicketsListComponent implements OnInit {
 
   protected translate = new Translate();
 
-  protected loading: boolean = false;
+  protected loading = false;
   protected pageEvent!: PageEvent;
   protected pageIndex = 0;
   protected pageSize = 10;
@@ -67,16 +67,16 @@ export class TicketsListComponent implements OnInit {
     TicketPriority.High,
     TicketPriority.Urgent,
   ];
-  protected clientFilter: string = '';
+  protected clientFilter = '';
 
   @ViewChild('clientTemplate', { static: true })
-  clientTemplate!: TemplateRef<any>;
+  clientTemplate!: TemplateRef<unknown>;
   @ViewChild('descriptionTemplate', { static: true })
-  descriptionTemplate!: TemplateRef<any>;
+  descriptionTemplate!: TemplateRef<unknown>;
   @ViewChild('statusTemplate', { static: true })
-  statusTemplate!: TemplateRef<any>;
+  statusTemplate!: TemplateRef<unknown>;
   @ViewChild('priorityTemplate', { static: true })
-  priorityTemplate!: TemplateRef<any>;
+  priorityTemplate!: TemplateRef<unknown>;
 
   ngOnInit(): void {
     this.fetchData();
