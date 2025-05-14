@@ -1,0 +1,22 @@
+name: Continuos Integration
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  continuos-integration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: action/checkout@v3
+
+      - name: Use Node.JS
+        uses: action/setup-node@v2
+        with:
+          node-version: "22.x"
+
+      - name: Run Install and Build
+        run: |
+          npm install
+          npm run build
