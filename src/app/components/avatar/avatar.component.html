@@ -3,7 +3,7 @@
   {{ generateAvatarPlaceholder() }}
 </button>
 } @else {
-<button class="avatar" (click)="redirectToProfile()">
-  <img [src]="avatar.url" alt="Avatar" />
+<button (click)="redirectToProfile()">
+  <img [src]="avatar.url" alt="Avatar" class="avatar" />
 </button>
 }
