@@ -1,0 +1,60 @@
+<div class="mb-2" *transloco="let t; prefix: 'FEATURES.TICKET'">
+  <button mat-button (click)="openFilterDialog()">
+    <mat-icon>filter_list</mat-icon>
+    {{ t("DROPDOWN_FILTERS_TITLE") }}
+  </button>
+</div>
+
+<app-list-layout
+  *transloco="let t; prefix: 'FEATURES.TICKET'"
+  [title]="t('TITLE')"
+  [data]="tickets()"
+  [length]="total()"
+  [pageSize]="pageSize()"
+  [loading]="loading()"
+  (pageChange)="onPageChange($event)"
+  (rowClicked)="onRowClicked($event)"
+  [displayedColumns]="[
+    'client',
+    'description',
+    'status',
+    'priority',
+    'category'
+  ]"
+  [columnLabels]="{
+    client: 'FEATURES.CLIENT.TITLE' | transloco,
+    description: t('DESCRIPTION.TITLE'),
+    status: t('STATUS.TITLE'),
+    priority: t('PRIORITY.TITLE'),
+    category: t('CATEGORY.TITLE')
+  }"
+  [columnTemplates]="{
+    client: clientTemplate,
+    description: descriptionTemplate,
+    status: statusTemplate,
+    priority: priorityTemplate,
+    category: categoryTemplate
+  }"
+>
+  <button mat-button title-group-button [routerLink]="'/ticket/create'">
+    {{ t("NEW_TICKET_BUTTON") }}
+  </button>
+
+  <ng-template #clientTemplate let-ticket>{{ ticket.client.name }}</ng-template>
+
+  <ng-template #statusTemplate let-ticket>{{
+    t("STATUS." + ticket.status.toUpperCase())
+  }}</ng-template>
+
+  <ng-template #priorityTemplate let-ticket>{{
+    t("PRIORITY." + ticket.priority.toUpperCase())
+  }}</ng-template>
+
+  <ng-template #categoryTemplate let-ticket>{{
+    t("CATEGORY." + ticket.category.toUpperCase())
+  }}</ng-template>
+
+  <ng-template #descriptionTemplate let-ticket>{{
+    ticket.description
+  }}</ng-template>
+</app-list-layout>

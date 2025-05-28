@@ -1,0 +1,11 @@
+<mat-form-field
+  *transloco="let t; prefix: 'WIDGETS.COMPONENTS.RANGE_DATE_PICKER'"
+>
+  <mat-label>{{ t("LABEL") }}</mat-label>
+  <mat-date-range-input [rangePicker]="picker">
+    <input matStartDate [placeholder]="t('START_DATE')" />
+    <input matEndDate [placeholder]="t('END_DATE')" />
+  </mat-date-range-input>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-date-range-picker #picker></mat-date-range-picker>
+</mat-form-field>

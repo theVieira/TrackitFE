@@ -1,0 +1,45 @@
+{
+  "FEATURES": {
+    "TICKET": {
+      "TITLE": "Chamados",
+      "NEW_TICKET_BUTTON": "Novo ticket",
+      "DROPDOWN_FILTERS_TITLE": "Filtros",
+      "DESCRIPTION": {
+        "TITLE": "Descrição"
+      },
+      "CATEGORY": {
+        "TITLE": "Categoria",
+        "DAILY": "Diário",
+        "BUDGET": "Orçamento",
+        "DELIVERY": "Entrega",
+        "MAINTENANCE": "Manutenção"
+      },
+      "STATUS": {
+        "TITLE": "Status",
+        "OPEN": "Aberto",
+        "PROGRESS": "Progresso",
+        "FINISH": "Finalizado",
+        "CANCELLED": "Cancelado"
+      },
+      "PRIORITY": {
+        "TITLE": "Prioridade",
+        "LOW": "Baixa",
+        "MEDIUM": "Normal",
+        "HIGH": "Alta",
+        "URGENT": "Urgente"
+      }
+    },
+    "CLIENT": {
+      "TITLE": "Cliente"
+    }
+  },
+  "WIDGETS": {
+    "COMPONENTS": {
+      "RANGE_DATE_PICKER": {
+        "LABEL": "Intervalo de datas",
+        "START_DATE": "Data inicial",
+        "END_DATE": "Data final"
+      }
+    }
+  }
+}

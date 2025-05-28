@@ -1,2 +1,0 @@
-/ticket/:id
-/client/:id

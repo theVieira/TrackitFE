@@ -1,19 +1,28 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { routes } from './app.routes';
-import {
-  provideClientHydration,
-  withEventReplay,
-} from '@angular/platform-browser';
-import { provideToastr } from 'ngx-toastr';
+import { LanguageService } from '@core/services/language.service';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { provideToastr } from 'ngx-toastr';
+import { routes } from './app.routes';
+import { authenticationInterceptor } from './core/interceptors/authentication.interceptor';
 import {
   provideHttpClient,
   withFetch,
   withInterceptors,
 } from '@angular/common/http';
-import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
-import { authenticationInterceptor } from './interceptors/authentication.interceptor';
+import {
+  ApplicationConfig,
+  provideZoneChangeDetection,
+  isDevMode,
+  APP_INITIALIZER,
+} from '@angular/core';
+import {
+  provideClientHydration,
+  withEventReplay,
+} from '@angular/platform-browser';
+import { TranslocoHttpLoader } from './transloco-loader';
+import { provideTransloco } from '@jsverse/transloco';
+import { languageProvider } from '@core/providers/language.provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,9 +32,25 @@ export const appConfig: ApplicationConfig = {
     provideToastr(),
     provideAnimations(),
     provideCharts(withDefaultRegisterables()),
+    provideHttpClient(),
     provideHttpClient(
       withFetch(),
       withInterceptors([authenticationInterceptor])
     ),
+    provideTransloco({
+      config: {
+        availableLangs: ['en', 'pt-BR'],
+        defaultLang: 'pt-BR',
+        reRenderOnLangChange: true,
+        prodMode: !isDevMode(),
+      },
+      loader: TranslocoHttpLoader,
+    }),
+    LanguageService,
+    {
+      useFactory: languageProvider,
+      deps: [LanguageService],
+      provide: APP_INITIALIZER,
+    },
   ],
 };

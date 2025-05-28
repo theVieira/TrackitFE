@@ -1,14 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@use 'ngx-toastr/toastr';
+@use 'tailwindcss';
 
-* {
-  text-decoration: none;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-  font-family: 'Roboto';
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

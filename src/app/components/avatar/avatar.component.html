@@ -1,9 +1,0 @@
-@if (!avatar) {
-<button class="avatar" (click)="redirectToProfile()">
-  {{ generateAvatarPlaceholder() }}
-</button>
-} @else {
-<button (click)="redirectToProfile()">
-  <img [src]="avatar.url" alt="Avatar" class="avatar" />
-</button>
-}

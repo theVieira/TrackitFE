@@ -37,9 +37,6 @@
             "server": "src/main.server.ts",
             "ssr": {
               "entry": "src/server.ts"
-            },
-            "prerender": {
-              "routesFile": "routes.txt"
             }
           },
           "configurations": {
@@ -101,7 +98,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss", "src/toast.scss"],
+            "styles": ["src/styles.scss", "node_modules/ngx-toastr/toastr.css"],
             "scripts": []
           }
         },

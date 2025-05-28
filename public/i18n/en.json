@@ -1,0 +1,45 @@
+{
+  "FEATURES": {
+    "TICKET": {
+      "TITLE": "Tickets",
+      "NEW_TICKET_BUTTON": "New ticket",
+      "DROPDOWN_FILTERS_TITLE": "Filters",
+      "DESCRIPTION": {
+        "TITLE": "Description"
+      },
+      "CATEGORY": {
+        "TITLE": "Category",
+        "DAILY": "Daily",
+        "BUDGET": "Budget",
+        "DELIVERY": "Delivery",
+        "MAINTENANCE": "Maintenance"
+      },
+      "STATUS": {
+        "TITLE": "Status",
+        "OPEN": "Open",
+        "PROGRESS": "Progress",
+        "FINISH": "Finish",
+        "CANCELLED": "Cancelled"
+      },
+      "PRIORITY": {
+        "TITLE": "Priority",
+        "LOW": "Low",
+        "MEDIUM": "Normal",
+        "HIGH": "High",
+        "URGENT": "Urgent"
+      }
+    },
+    "CLIENT": {
+      "TITLE": "Client"
+    }
+  },
+  "WIDGETS": {
+    "COMPONENTS": {
+      "RANGE_DATE_PICKER": {
+        "LABEL": "Date interval",
+        "START_DATE": "Start date",
+        "END_DATE": "End date"
+      }
+    }
+  }
+}
