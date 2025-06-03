@@ -1,4 +1,4 @@
-FROM node:22.11.0
+FROM node:22.16.0 as builder
 
 WORKDIR /app
 
@@ -10,9 +10,9 @@ RUN npm run build
 
 FROM nginx:alpine
 
-COPY --from=builder /app/dist/browser usr/share/nginx/html
+COPY --from=builder /app/dist/browser /usr/share/nginx/html
 
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/default.conf
 
 EXPOSE 80
 
