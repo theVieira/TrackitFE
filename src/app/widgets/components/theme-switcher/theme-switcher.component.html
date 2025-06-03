@@ -1,0 +1,15 @@
+<div class="theme-switcher">
+  <mat-form-field appearance="fill">
+    <mat-label>Escolha um tema</mat-label>
+    <mat-select
+      [value]="currentTheme"
+      (selectionChange)="setTheme($event.value)"
+    >
+      @for (theme of themes; track $index) {
+      <mat-option [value]="theme.filename">
+        {{ theme.name }}
+      </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>
