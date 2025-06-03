@@ -4,8 +4,8 @@
   class="h-screen flex items-center justify-center"
 >
   <div class="flex flex-col w-sm">
-    <div>
-      <h1 class="text-zinc-200 text-4xl font-bold">TRACKIT</h1>
+    <div class="pb-4">
+      <h1 class="text-zinc-200 text-4xl font-bold font-mono">TRACKIT</h1>
       <p class="text-zinc-400 text-sm">Entre com suas credenciais</p>
     </div>
     <mat-form-field>
@@ -47,12 +47,19 @@
       Esqueceu sua senha?
       <span class="text-zinc-300 cursor-pointer">Clique aqui</span>
     </a>
-    <button type="submit" mat-flat-button class="mt-4">Entrar</button>
+    <button
+      type="submit"
+      mat-flat-button
+      class="mt-4"
+      [disabled]="form.invalid"
+    >
+      Entrar
+    </button>
   </div>
 </form>
 <div class="w-lvw h-lvh absolute top-0 left-0 z-[-1] brightness-25">
   <img
-    src="/sign-in-illustration.svg"
+    src="/images/sign-in-illustration.svg"
     alt="illustration"
     class="object-cover w-full h-full"
   />
