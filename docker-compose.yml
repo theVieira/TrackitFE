@@ -1,0 +1,12 @@
+services:
+  trackit-frontend:
+    build: .
+    container_name: trackit-frontend
+    networks:
+      - trackit-network
+    ports:
+      - "4200:80"
+
+networks:
+ trackit-network:
+  driver: bridge
