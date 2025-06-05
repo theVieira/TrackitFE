@@ -8,7 +8,8 @@ import { MatListModule } from '@angular/material/list';
 import { isPlatformBrowser } from '@angular/common';
 import { sidenavItems } from './sidenav.items';
 import { MenuItem } from './sidenav.interface';
-import { SelectLanguageComponent } from '@widgets/components/language-switcher/language-switcher.component';
+import { AvatarComponent } from '../../../shared/components/avatar/avatar.component';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-sidenav',
@@ -20,7 +21,8 @@ import { SelectLanguageComponent } from '@widgets/components/language-switcher/l
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    SelectLanguageComponent,
+    AvatarComponent,
+    TranslocoModule,
   ],
   templateUrl: './sidenav.component.html',
 })

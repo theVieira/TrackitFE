@@ -1,20 +1,20 @@
 import { MenuItem } from './sidenav.interface';
 
 export const sidenavItems: MenuItem[] = [
-  { icon: 'home', label: 'Home', path: '/' },
+  { icon: 'home', label: 'HOME', path: '/' },
   {
     icon: 'playlist_add_check_icon',
-    label: 'Tickets',
+    label: 'TICKETS',
     path: '/ticket',
   },
   {
     icon: 'person',
-    label: 'Clientes',
+    label: 'CLIENTS',
     path: '/client',
   },
   {
     icon: 'person',
-    label: 'Técnicos',
+    label: 'TECHS',
     path: '/tech',
   },
 ];
