@@ -23,6 +23,8 @@ import {
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
 import { languageProvider } from '@core/providers/language.provider';
+import { ThemeService } from '@core/services/theme.service';
+import { themeProvider } from '@core/providers/theme.provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -40,17 +42,22 @@ export const appConfig: ApplicationConfig = {
     provideTransloco({
       config: {
         availableLangs: ['en', 'pt-BR'],
-        defaultLang: 'pt-BR',
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
       },
       loader: TranslocoHttpLoader,
     }),
-    LanguageService,
     {
+      provide: APP_INITIALIZER,
+      useFactory: themeProvider,
+      deps: [ThemeService],
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
       useFactory: languageProvider,
       deps: [LanguageService],
-      provide: APP_INITIALIZER,
+      multi: true,
     },
   ],
 };
