@@ -1,15 +1,19 @@
-<div class="theme-switcher">
-  <mat-form-field appearance="fill">
-    <mat-label>Escolha um tema</mat-label>
-    <mat-select
-      [value]="currentTheme"
-      (selectionChange)="setTheme($event.value)"
-    >
-      @for (theme of themes; track $index) {
-      <mat-option [value]="theme.filename">
+<mat-form-field *transloco="let t; prefix: 'WIDGETS.COMPONENTS.THEME_SWITCHER'">
+  <mat-label>{{ t("LABEL") }}</mat-label>
+  <mat-select class="w-full" (selectionChange)="onThemeChange($event.value)">
+    <mat-optgroup [label]="t('LIGHT')">
+      @for (theme of lightThemes; track theme.name) {
+      <mat-option [value]="theme">
         {{ theme.name }}
       </mat-option>
       }
-    </mat-select>
-  </mat-form-field>
-</div>
+    </mat-optgroup>
+    <mat-optgroup [label]="t('DARK')">
+      @for (theme of darkThemes; track theme.name) {
+      <mat-option [value]="theme">
+        {{ theme.name }}
+      </mat-option>
+      }
+    </mat-optgroup>
+  </mat-select>
+</mat-form-field>
