@@ -13,12 +13,14 @@ import { iCreateClientRequest } from '../interfaces/create-client-request.interf
 export class ClientService {
   private readonly _httpClient = inject(HttpClient);
 
-  public getClients({
-    skip,
-    take,
-  }: iPaginatedRequest): Observable<iPaginatedResponse<iClient>> {
+  public getClients(
+    { skip, take }: iPaginatedRequest,
+    client?: string
+  ): Observable<iPaginatedResponse<iClient>> {
+    if (client === undefined) client = '';
+
     return this._httpClient.get<iPaginatedResponse<iClient>>(
-      `${environment.apiUrl}/clients?skip=${skip}&take=${take}`
+      `${environment.apiUrl}/clients?skip=${skip}&take=${take}&clientName=${client}`
     );
   }
 
