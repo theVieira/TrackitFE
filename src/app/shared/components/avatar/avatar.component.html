@@ -1,0 +1,9 @@
+@if(url && alt) {
+<img [src]="url" [alt]="alt" class="rounded-full w-10 h-10" />
+} @if(initials) {
+<div
+  class="w-10 h-10 rounded-full bg-zinc-400 text-zinc-900 flex items-center justify-center font-bold"
+>
+  {{ initials.toUpperCase() }}
+</div>
+}
