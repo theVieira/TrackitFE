@@ -1,1 +1,11 @@
-<button class="cursor-pointer">🇧🇷</button>
+<mat-form-field
+  *transloco="let t; prefix: 'WIDGETS.COMPONENTS.LANGUAGE_SWITCHER'"
+>
+  <mat-label>
+    <span> {{ t("LABEL") }} </span>
+  </mat-label>
+  <mat-select (selectionChange)="changeLanguage($event.value)">
+    <mat-option [value]="language.EN">🇺🇸</mat-option>
+    <mat-option [value]="language.PT_BR">🇧🇷</mat-option>
+  </mat-select>
+</mat-form-field>

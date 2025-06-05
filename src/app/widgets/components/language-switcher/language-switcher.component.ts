@@ -1,8 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { MatSelectModule } from '@angular/material/select';
+import { eLanguage } from '@core/enums/language.enum';
+import { LanguageService } from '@core/services/language.service';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  selector: 'app-select-language',
-  imports: [],
+  selector: 'app-language-switcher',
+  imports: [MatSelectModule, TranslocoModule],
   templateUrl: './language-switcher.component.html',
 })
-export class SelectLanguageComponent {}
+export class SelectLanguageComponent {
+  private readonly _languageService = inject(LanguageService);
+
+  protected language = eLanguage;
+  protected currentLanguage = signal<eLanguage>(
+    this._languageService.getActiveLang()
+  );
+
+  changeLanguage(language: eLanguage) {
+    this._languageService.setActiveLang(language);
+  }
+}
