@@ -5,7 +5,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { StorageService } from '@core/services/storage.service';
 import { eTicketPriority } from '@features/ticket/enums/ticket-priority.enum';
 import { TranslocoModule } from '@jsverse/transloco';
-import { selectPriorityFilterConst } from '@widgets/constants/select-priority-filter.constant';
+import { SELECT_PRIORITY_FILTER_CONST } from '@widgets/constants/select-priority-filter.constant';
 
 @Component({
   selector: 'app-select-priority-filter',
@@ -24,9 +24,9 @@ export class SelectPriorityFilterComponent {
   private readonly _priorityStorageName = 'priority_select_filter';
 
   protected priorityForm = new FormControl<eTicketPriority[]>(
-    selectPriorityFilterConst
+    SELECT_PRIORITY_FILTER_CONST
   );
-  protected priorityList: eTicketPriority[] = selectPriorityFilterConst;
+  protected priorityList: eTicketPriority[] = SELECT_PRIORITY_FILTER_CONST;
 
   private readonly _getPriority = effect(() => {
     const priority = this._storageService.getItem<eTicketPriority[]>(

@@ -5,7 +5,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { StorageService } from '@core/services/storage.service';
 import { eTicketStatus } from '@features/ticket/enums/ticket-status.enum';
 import { TranslocoModule } from '@jsverse/transloco';
-import { selectStatusFilterConst } from '@widgets/constants/select-status-filter.constant';
+import { SELECT_STATUS_FILTER_CONST } from '@widgets/constants/select-status-filter.constant';
 
 @Component({
   selector: 'app-select-status-filter',
@@ -23,9 +23,9 @@ export class SelectStatusFilterComponent {
   private readonly _storageService = inject(StorageService);
   private readonly _statusStorageName = '_status_select_filter';
 
-  protected statusForm = new FormControl(selectStatusFilterConst);
+  protected statusForm = new FormControl(SELECT_STATUS_FILTER_CONST);
 
-  protected statusList: eTicketStatus[] = selectStatusFilterConst;
+  protected statusList: eTicketStatus[] = SELECT_STATUS_FILTER_CONST;
 
   private readonly _getStatus = effect(() => {
     const status = this._storageService.getItem<eTicketStatus[]>(

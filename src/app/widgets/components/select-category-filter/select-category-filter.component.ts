@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { StorageService } from '@core/services/storage.service';
-import { selectCategoryFilterConst } from '@widgets/constants/select-category-filter.constant';
+import { SELECT_CATEGORY_FILTER_CONST } from '@widgets/constants/select-category-filter.constant';
 
 @Component({
   selector: 'app-select-category-filter',
@@ -24,10 +24,10 @@ export class SelectCategoryFilterComponent {
   private readonly _categoryStorageName = '_category_select_filter';
 
   protected categoryForm = new FormControl<eTicketCategory[]>(
-    selectCategoryFilterConst
+    SELECT_CATEGORY_FILTER_CONST
   );
 
-  protected categoryList: eTicketCategory[] = selectCategoryFilterConst;
+  protected categoryList: eTicketCategory[] = SELECT_CATEGORY_FILTER_CONST;
 
   private readonly _getCategory = effect(() => {
     const category = this._storageService.getItem<eTicketCategory[]>(
