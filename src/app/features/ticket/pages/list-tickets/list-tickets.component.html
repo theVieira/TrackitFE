@@ -42,19 +42,19 @@
 
   <ng-template #clientTemplate let-ticket>{{ ticket.client.name }}</ng-template>
 
-  <ng-template #statusTemplate let-ticket>{{
-    t("STATUS." + ticket.status.toUpperCase())
-  }}</ng-template>
+  <ng-template #statusTemplate let-ticket>
+    {{ t("STATUS." + ticket.status.toUpperCase()) }}
+  </ng-template>
 
-  <ng-template #priorityTemplate let-ticket>{{
-    t("PRIORITY." + ticket.priority.toUpperCase())
-  }}</ng-template>
+  <ng-template #priorityTemplate let-ticket>
+    {{ t("PRIORITY." + ticket.priority.toUpperCase()) }}
+  </ng-template>
 
-  <ng-template #categoryTemplate let-ticket>{{
-    t("CATEGORY." + ticket.category.toUpperCase())
-  }}</ng-template>
+  <ng-template #categoryTemplate let-ticket>
+    {{ t("CATEGORY." + ticket.category.toUpperCase()) }}
+  </ng-template>
 
-  <ng-template #descriptionTemplate let-ticket>{{
-    ticket.description
-  }}</ng-template>
+  <ng-template #descriptionTemplate let-ticket>
+    {{ ticket.description }}
+  </ng-template>
 </app-list-layout>

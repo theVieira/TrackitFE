@@ -10,10 +10,10 @@ import { iTicket } from '@features/ticket/models/ticket.model';
 import { TicketService } from '@features/ticket/services/ticket.service';
 import { TranslocoModule } from '@jsverse/transloco';
 import { iPaginatedRequest } from '@shared/interfaces/paginated-request.interface';
-import { selectCategoryFilterConst } from '@widgets/constants/select-category-filter.constant';
+import { SELECT_CATEGORY_FILTER_CONST } from '@widgets/constants/select-category-filter.constant';
 import { ListLayoutComponent } from '@widgets/layouts/list-layout/list-layout.component';
-import { selectStatusFilterConst } from '@widgets/constants/select-status-filter.constant';
-import { selectPriorityFilterConst } from '@widgets/constants/select-priority-filter.constant';
+import { SELECT_STATUS_FILTER_CONST } from '@widgets/constants/select-status-filter.constant';
+import { SELECT_PRIORITY_FILTER_CONST } from '@widgets/constants/select-priority-filter.constant';
 import { FiltersDialogComponent } from '../../dialogs/filters-dialog/filters-dialog.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatIconModule } from '@angular/material/icon';
@@ -48,9 +48,9 @@ export class ListTicketsComponent {
   });
 
   private client = signal<iClient | null>(null);
-  private category = signal<eTicketCategory[]>(selectCategoryFilterConst);
-  private status = signal<eTicketStatus[]>(selectStatusFilterConst);
-  private priority = signal<eTicketPriority[]>(selectPriorityFilterConst);
+  private category = signal<eTicketCategory[]>(SELECT_CATEGORY_FILTER_CONST);
+  private status = signal<eTicketStatus[]>(SELECT_STATUS_FILTER_CONST);
+  private priority = signal<eTicketPriority[]>(SELECT_PRIORITY_FILTER_CONST);
 
   protected pageSize = signal<number>(10);
   protected tickets = signal<iTicket[]>([]);
