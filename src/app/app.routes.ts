@@ -30,6 +30,16 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./features/dashboard/dashboard.routes').then((x) => x.routes),
       },
+      {
+        path: 'client',
+        loadChildren: () =>
+          import('./features/client/client.routes').then((x) => x.routes),
+      },
+      {
+        path: 'tech',
+        loadChildren: () =>
+          import('./features/tech/tech.routes').then((x) => x.routes),
+      },
     ],
   },
   {
