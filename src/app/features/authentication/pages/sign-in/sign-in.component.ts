@@ -7,11 +7,11 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
-import { NotificationService } from '@shared/services/notification.service';
+import { AuthenticationService as AuthenticationServiceCore } from '@core/services/authentication.service';
 import { StorageService } from '@core/services/storage.service';
 import { environment } from '@environment';
 import { AuthenticationService } from '@features/authentication/services/authentication.service';
-import { AuthenticationService as AuthenticationServiceCore } from '@core/services/authentication.service';
+import { NotificationService } from '@shared/services/notification.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -30,7 +30,7 @@ export class SignInComponent implements OnInit {
 
   protected form = this._formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
   ngOnInit(): void {
@@ -55,7 +55,6 @@ export class SignInComponent implements OnInit {
           environment.techCookieName,
           JSON.stringify(tech)
         );
-        this._notificationService.success('Usuário autenticado com sucesso');
         this._authenticationServiceCore.isAuthenticated.set(true);
         this._router.navigate(['']);
       },
@@ -74,7 +73,7 @@ export class SignInComponent implements OnInit {
             break;
 
           case 0:
-            this._notificationService.error('404 - Não encontrado');
+            this._notificationService.error('404 - Servidor fora do ar');
             break;
 
           default:
