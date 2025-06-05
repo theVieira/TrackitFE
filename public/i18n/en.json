@@ -30,7 +30,12 @@
       }
     },
     "CLIENT": {
-      "TITLE": "Client"
+      "TITLE": "Clients",
+      "NEW_CLIENT_BUTTON": "New client",
+      "NAME": "Nome",
+      "CNPJ": "CNPJ",
+      "TAG": "TAG",
+      "AVATAR": "Avatar"
     }
   },
   "WIDGETS": {
@@ -39,6 +44,24 @@
         "LABEL": "Date interval",
         "START_DATE": "Start date",
         "END_DATE": "End date"
+      },
+      "THEME_SWITCHER": {
+        "LABEL": "Theme",
+        "DARK": "Dark",
+        "LIGHT": "Light"
+      },
+      "LANGUAGE_SWITCHER": {
+        "LABEL": "Language"
+      }
+    }
+  },
+  "CORE": {
+    "LAYOUTS": {
+      "SIDENAV": {
+        "HOME": "Home",
+        "TICKETS": "Tickets",
+        "CLIENTS": "Clients",
+        "TECHS": "Techs"
       }
     }
   }

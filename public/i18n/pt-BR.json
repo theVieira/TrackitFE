@@ -30,7 +30,12 @@
       }
     },
     "CLIENT": {
-      "TITLE": "Cliente"
+      "TITLE": "Clientes",
+      "NEW_CLIENT_BUTTON": "Novo cliente",
+      "NAME": "Nome",
+      "CNPJ": "CNPJ",
+      "TAG": "TAG",
+      "AVATAR": "Avatar"
     }
   },
   "WIDGETS": {
@@ -39,6 +44,24 @@
         "LABEL": "Intervalo de datas",
         "START_DATE": "Data inicial",
         "END_DATE": "Data final"
+      },
+      "THEME_SWITCHER": {
+        "LABEL": "Tema",
+        "DARK": "Escuro",
+        "LIGHT": "Claro"
+      },
+      "LANGUAGE_SWITCHER": {
+        "LABEL": "Idioma"
+      }
+    }
+  },
+  "CORE": {
+    "LAYOUTS": {
+      "SIDENAV": {
+        "HOME": "Início",
+        "TICKETS": "Chamados",
+        "CLIENTS": "Clientes",
+        "TECHS": "Técnicos"
       }
     }
   }
