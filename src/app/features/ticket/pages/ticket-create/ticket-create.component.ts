@@ -3,6 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-create-ticket',
   imports: [],
-  templateUrl: './create-ticket.component.html',
+  templateUrl: './ticket-create.component.html',
 })
 export class CreateTicketComponent {}

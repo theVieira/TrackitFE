@@ -6,7 +6,6 @@ import { Component, Input } from '@angular/core';
   templateUrl: './avatar.component.html',
 })
 export class AvatarComponent {
-  @Input() url?: string;
-  @Input() alt?: string;
-  @Input() initials?: string;
+  @Input() url!: string;
+  @Input() alt!: string;
 }

@@ -14,7 +14,7 @@ import { SELECT_CATEGORY_FILTER_CONST } from '@widgets/constants/select-category
 import { ListLayoutComponent } from '@widgets/layouts/list-layout/list-layout.component';
 import { SELECT_STATUS_FILTER_CONST } from '@widgets/constants/select-status-filter.constant';
 import { SELECT_PRIORITY_FILTER_CONST } from '@widgets/constants/select-priority-filter.constant';
-import { FiltersDialogComponent } from '../../dialogs/filters-dialog/filters-dialog.component';
+import { TicketFiltersDialogComponent } from '@features/ticket/dialogs/ticket-filters-dialog/ticket-filters-dialog.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatIconModule } from '@angular/material/icon';
 import {
@@ -35,7 +35,7 @@ import {
     MatIconModule,
     RouterLink,
   ],
-  templateUrl: './list-tickets.component.html',
+  templateUrl: './ticket-list.component.html',
 })
 export class ListTicketsComponent {
   private _bottomSheet = inject(MatBottomSheet);
@@ -83,32 +83,32 @@ export class ListTicketsComponent {
       });
   });
 
-  onChangeCategory(category: eTicketCategory[]) {
+  protected onChangeCategory(category: eTicketCategory[]) {
     this.category.set(category);
   }
 
-  onChangeStatus(status: eTicketStatus[]) {
+  protected onChangeStatus(status: eTicketStatus[]) {
     this.status.set(status);
   }
 
-  onChangePriority(priority: eTicketPriority[]) {
+  protected onChangePriority(priority: eTicketPriority[]) {
     this.priority.set(priority);
   }
 
-  onChangeClient(client: iClient | null) {
+  protected onChangeClient(client: iClient | null) {
     this.client.set(client);
   }
 
-  onPageChange(event: PageEvent) {
+  protected onPageChange(event: PageEvent) {
     console.log(event);
   }
 
-  onRowClicked({ id }: iTicket) {
+  protected onRowClicked({ id }: iTicket) {
     this._router.navigate([`ticket/${id}`]);
   }
 
-  openFilterDialog() {
-    this._bottomSheet.open(FiltersDialogComponent, {
+  protected openFilterDialog() {
+    this._bottomSheet.open(TicketFiltersDialogComponent, {
       data: {
         changeClient: this.onChangeClient.bind(this),
         changeCategory: this.onChangeCategory.bind(this),

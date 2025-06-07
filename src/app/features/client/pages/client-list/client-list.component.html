@@ -1,5 +1,8 @@
-<div>
-  <app-select-client-autocomplete (clientSelected)="onClientSelected($event)" />
+<div class="mb-2" *transloco="let t; prefix: 'FEATURES.CLIENT'">
+  <button mat-button (click)="openFilterDialog()">
+    <mat-icon>filter_list</mat-icon>
+    {{ t("DROPDOWN_FILTERS_TITLE") }}
+  </button>
 </div>
 
 <app-list-layout
@@ -31,9 +34,7 @@
   <ng-template #avatarTemplate let-client>
     @if(client.avatar) {
     <app-avatar [url]="client.avatar.url" [alt]="client.name" />
-    } @else {
-    <app-avatar [initials]="client.name.substring(0, 2)" />
-    }
+    } @else { <mat-icon>broken_image</mat-icon> }
   </ng-template>
 
   <ng-template #nameTemplate let-client>

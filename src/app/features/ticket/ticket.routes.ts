@@ -4,7 +4,7 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./pages/list-tickets/list-tickets.component').then(
+      import('./pages/ticket-list/ticket-list.component').then(
         (x) => x.ListTicketsComponent
       ),
   },
@@ -18,7 +18,7 @@ export const routes: Routes = [
   {
     path: 'create',
     loadComponent: () =>
-      import('./pages/create-ticket/create-ticket.component').then(
+      import('./pages/ticket-create/ticket-create.component').then(
         (x) => x.CreateTicketComponent
       ),
   },

@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { ListLayoutComponent } from '../../../../widgets/layouts/list-layout/list-layout.component';
+import { ListLayoutComponent } from '@widgets/layouts/list-layout/list-layout.component';
 import { TranslocoModule } from '@jsverse/transloco';
 import { iClient } from '@features/client/models/client.model';
 import { LoadingService } from '@shared/services/loading.service';
@@ -16,22 +16,25 @@ import { iPaginatedRequest } from '@shared/interfaces/paginated-request.interfac
 import { PageEvent } from '@angular/material/paginator';
 import { eClientTag } from '@features/client/enums/client-tag.enum';
 import { MatButtonModule } from '@angular/material/button';
-import { AvatarComponent } from '../../../../shared/components/avatar/avatar.component';
-import { SelectClientAutocompleteComponent } from '../../../../widgets/components/select-client-autocomplete/select-client-autocomplete.component';
+import { AvatarComponent } from '@shared/components/avatar/avatar.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { ClientFiltersDialogComponent } from '@features/client/dialogs/client-filters-dialog/client-filters-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-list-clients',
+  selector: 'app-client-list',
   imports: [
     RouterLink,
     ListLayoutComponent,
     TranslocoModule,
     MatButtonModule,
     AvatarComponent,
-    SelectClientAutocompleteComponent,
+    MatIconModule,
   ],
-  templateUrl: './list-clients.component.html',
+  templateUrl: './client-list.component.html',
 })
 export class ListClientsComponent {
+  private readonly _bottomSheet = inject(MatBottomSheet);
   private readonly _router = inject(Router);
   private readonly _loadingService = inject(LoadingService);
   private readonly _clientService = inject(ClientService);
@@ -73,7 +76,15 @@ export class ListClientsComponent {
     this._router.navigate([`/client/${id}`]);
   }
 
-  onClientSelected(client: iClient | null) {
+  protected onClientSelected(client: iClient | null) {
     this.client.set(client);
+  }
+
+  protected openFilterDialog() {
+    this._bottomSheet.open(ClientFiltersDialogComponent, {
+      data: {
+        changeClient: this.onClientSelected.bind(this),
+      },
+    });
   }
 }

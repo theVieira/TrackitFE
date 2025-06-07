@@ -35,7 +35,8 @@
       "NAME": "Nome",
       "CNPJ": "CNPJ",
       "TAG": "TAG",
-      "AVATAR": "Avatar"
+      "AVATAR": "Avatar",
+      "DROPDOWN_FILTERS_TITLE": "Filters"
     }
   },
   "WIDGETS": {

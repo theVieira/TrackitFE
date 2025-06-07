@@ -4,14 +4,14 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./pages/list-clients/list-clients.component').then(
+      import('./pages/client-list/client-list.component').then(
         (x) => x.ListClientsComponent
       ),
   },
   {
     path: 'create',
     loadComponent: () =>
-      import('./pages/create-client/create-client.component').then(
+      import('./pages/client-create/client-create.component').then(
         (x) => x.CreateClientComponent
       ),
   },

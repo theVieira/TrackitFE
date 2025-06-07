@@ -15,7 +15,7 @@ import { ClientService } from '@features/client/services/client.service';
 import { NotificationService } from '@shared/services/notification.service';
 
 @Component({
-  selector: 'app-create-client',
+  selector: 'app-client-create',
   imports: [
     MatCardModule,
     ReactiveFormsModule,
@@ -25,7 +25,7 @@ import { NotificationService } from '@shared/services/notification.service';
     MatSelectModule,
     MatIconModule,
   ],
-  templateUrl: './create-client.component.html',
+  templateUrl: './client-create.component.html',
 })
 export class CreateClientComponent {
   private readonly _formBuilder = inject(NonNullableFormBuilder);
