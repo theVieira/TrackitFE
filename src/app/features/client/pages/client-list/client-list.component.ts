@@ -73,7 +73,7 @@ export class ListClientsComponent {
   }
 
   protected onRowClicked({ id }: iClient) {
-    this._router.navigate([`/client/${id}`]);
+    this._router.navigate([`client/details/${id}`]);
   }
 
   protected onClientSelected(client: iClient | null) {
@@ -82,6 +82,7 @@ export class ListClientsComponent {
 
   protected openFilterDialog() {
     this._bottomSheet.open(ClientFiltersDialogComponent, {
+      autoFocus: false,
       data: {
         changeClient: this.onClientSelected.bind(this),
       },

@@ -15,4 +15,11 @@ export const routes: Routes = [
         (x) => x.CreateClientComponent
       ),
   },
+  {
+    path: 'details/:id',
+    loadComponent: () =>
+      import('./pages/client-details/client-details.component').then(
+        (x) => x.ClientDetailsComponent
+      ),
+  },
 ];
