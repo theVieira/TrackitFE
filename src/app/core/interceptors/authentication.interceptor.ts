@@ -13,7 +13,10 @@ export const authenticationInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
-  const headers = new HttpHeaders().append('Authorization', 'Bearer ' + token);
+  const headers = new HttpHeaders().append(
+    'Authorization',
+    'Bearer ' + JSON.parse(token)
+  );
 
   const cloneReq = req.clone({ headers });
 
