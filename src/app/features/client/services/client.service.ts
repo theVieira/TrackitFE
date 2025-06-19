@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { iClient } from '../models/client.model';
 import { HttpClient } from '@angular/common/http';
-import { iPaginatedResponse } from '@shared/interfaces/paginated-response.interface';
+import { iPaginatedResponse } from '@shared/api/paginated.response';
 import { environment } from '@environment';
 import { Observable } from 'rxjs';
-import { iPaginatedRequest } from '@shared/interfaces/paginated-request.interface';
-import { iCreateClientRequest } from '../interfaces/create-client-request.interface';
+import { iPaginatedRequest } from '@shared/api/paginated.request';
+import { iCreateClientRequest } from '../api/create-client.request';
 
 @Injectable({
   providedIn: 'root',

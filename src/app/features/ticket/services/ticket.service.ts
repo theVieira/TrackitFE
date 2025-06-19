@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { iPaginatedResponse } from '@shared/interfaces/paginated-response.interface';
+import { iPaginatedResponse } from '@shared/api/paginated.response';
 import { Observable } from 'rxjs';
 import { iTicket } from '../models/ticket.model';
 import { environment } from '@environment';
-import { iGetTicketsRequest } from '../interfaces/get-tickets-request.interface';
-import { iCreateTicketRequest } from '../interfaces/create-ticket-request.interface';
+import { iGetTicketsRequest } from '../api/get-tickets.request';
+import { iCreateTicketRequest } from '../api/create-ticket.request';
 import { iTicketTimeline } from '../models/ticket-timeline.model';
 
 @Injectable({

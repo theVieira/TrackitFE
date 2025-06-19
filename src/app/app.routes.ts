@@ -1,18 +1,18 @@
 import { Routes } from '@angular/router';
-import { SidenavComponent } from '@core/layouts/sidenav/sidenav.component';
+import { SidenavLayout } from '@core/layouts/sidenav/sidenav.layout';
 import { authenticationGuard } from './core/guards/authentication.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    component: SidenavComponent,
+    component: SidenavLayout,
     canActivate: [authenticationGuard],
     children: [
       {
         path: '',
         loadComponent: () =>
-          import('./features/dashboard/pages/home/home.component').then(
-            (x) => x.HomeComponent
+          import('./features/dashboard/pages/home/home.page').then(
+            (x) => x.HomePage
           ),
       },
       {

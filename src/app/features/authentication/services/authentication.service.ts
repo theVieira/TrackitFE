@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { iSignInRequest } from '../interfaces/sign-in-request.interface';
+import { iSignInRequest } from '../api/sign-in.request';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { iSignInResponse } from '../interfaces/sign-in-response.interface';
+import { iSignInResponse } from '../api/sign-in.response';
 import { environment } from '@environment';
 
 @Injectable({

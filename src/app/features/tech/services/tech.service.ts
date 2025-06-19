@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { iTech } from '../models/tech.model';
 import { environment } from '@environment';
-import { iPaginatedResponse } from '@shared/interfaces/paginated-response.interface';
+import { iPaginatedResponse } from '@shared/api/paginated.response';
 
 @Injectable({
   providedIn: 'root',

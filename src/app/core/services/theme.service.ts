@@ -1,8 +1,8 @@
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { StorageService } from './storage.service';
-import { THEMES_CONST } from '@widgets/constants/themes.constant';
+import { THEMES_CONST } from '@widgets/components/theme-switcher/themes.constant';
 import { isPlatformBrowser } from '@angular/common';
-import { iTheme } from '@widgets/interfaces/theme.interface';
+import { iTheme } from '@widgets/components/theme-switcher/theme.interface';
 
 @Injectable({
   providedIn: 'root',

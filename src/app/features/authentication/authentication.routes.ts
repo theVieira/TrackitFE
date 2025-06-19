@@ -4,15 +4,13 @@ export const routes: Routes = [
   {
     path: 'sign-in',
     loadComponent: () =>
-      import('./pages/sign-in/sign-in.component').then(
-        (x) => x.SignInComponent
-      ),
+      import('./pages/sign-in/sign-in.page').then((x) => x.SignInPage),
   },
   {
     path: 'forgot-password',
     loadComponent: () =>
-      import('./pages/forgot-password/forgot-password.component').then(
-        (x) => x.ForgotPasswordComponent
+      import('./pages/forgot-password/forgot-password.page').then(
+        (x) => x.ForgotPasswordPage
       ),
   },
 ];
