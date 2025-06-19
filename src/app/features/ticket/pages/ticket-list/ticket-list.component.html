@@ -16,24 +16,30 @@
   (rowClicked)="onRowClicked($event)"
   [displayedColumns]="[
     'client',
+    'createdBy',
     'description',
     'status',
     'priority',
-    'category'
+    'category',
+    'tag'
   ]"
   [columnLabels]="{
-    client: 'FEATURES.CLIENT.TITLE' | transloco,
+    client: t('CLIENT'),
+    createdBy: t('CREATED_BY'),
     description: t('DESCRIPTION.TITLE'),
     status: t('STATUS.TITLE'),
     priority: t('PRIORITY.TITLE'),
-    category: t('CATEGORY.TITLE')
+    category: t('CATEGORY.TITLE'),
+    tag: t('TAG.TITLE')
   }"
   [columnTemplates]="{
     client: clientTemplate,
+    createdBy: createdByTemplate,
     description: descriptionTemplate,
     status: statusTemplate,
     priority: priorityTemplate,
-    category: categoryTemplate
+    category: categoryTemplate,
+    tag: tagTemplate
   }"
 >
   <button mat-button title-group-button [routerLink]="'/ticket/create'">
@@ -57,4 +63,18 @@
   <ng-template #descriptionTemplate let-ticket>
     {{ ticket.description }}
   </ng-template>
+
+  <ng-template #tagTemplate let-ticket>
+    {{ t("TAG." + ticket.tag.toUpperCase()) }}
+  </ng-template>
+
+  <ng-template #createdByTemplate let-ticket>
+    {{ ticket.createdBy.name }}
+  </ng-template>
+
+  <ng-container class="hidden">
+    <app-select-category-filter (categoryChanged)="onChangeCategory($event)" />
+    <app-select-priority-filter (priorityChanged)="onChangePriority($event)" />
+    <app-select-status-filter (statusChanged)="onChangeStatus($event)" />
+  </ng-container>
 </app-list-layout>

@@ -25,6 +25,11 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
+import { eTicketTag } from '@features/ticket/enums/ticket-tag.enum';
+import { iTech } from '@features/tech/models/tech.model';
+import { SelectCategoryFilterComponent } from '../../../../widgets/components/select-category-filter/select-category-filter.component';
+import { SelectPriorityFilterComponent } from '../../../../widgets/components/select-priority-filter/select-priority-filter.component';
+import { SelectStatusFilterComponent } from '../../../../widgets/components/select-status-filter/select-status-filter.component';
 
 @Component({
   selector: 'app-list-tickets',
@@ -34,6 +39,9 @@ import {
     TranslocoModule,
     MatIconModule,
     RouterLink,
+    SelectCategoryFilterComponent,
+    SelectPriorityFilterComponent,
+    SelectStatusFilterComponent,
   ],
   templateUrl: './ticket-list.component.html',
 })
@@ -44,7 +52,7 @@ export class ListTicketsComponent {
   private readonly _router = inject(Router);
   private readonly _pagination = signal<iPaginatedRequest>({
     skip: 0,
-    take: 20,
+    take: 10,
   });
 
   private client = signal<iClient | null>(null);
@@ -52,7 +60,7 @@ export class ListTicketsComponent {
   private status = signal<eTicketStatus[]>(SELECT_STATUS_FILTER_CONST);
   private priority = signal<eTicketPriority[]>(SELECT_PRIORITY_FILTER_CONST);
 
-  protected pageSize = signal<number>(10);
+  protected pageSize = signal<number>(this._pagination().take ?? 0);
   protected tickets = signal<iTicket[]>([]);
   protected total = signal<number>(0);
   protected loading = signal<boolean>(this._loadingService.loading());
@@ -65,6 +73,10 @@ export class ListTicketsComponent {
   statusTemplate!: TemplateRef<eTicketStatus>;
   @ViewChild('priorityTemplate', { static: true })
   priorityTemplate!: TemplateRef<eTicketPriority>;
+  @ViewChild('tagTemplate', { static: true })
+  tagTemplate!: TemplateRef<eTicketTag>;
+  @ViewChild('createdByTemplate', { static: true })
+  createdByTemplate!: TemplateRef<iTech>;
 
   private readonly _getTickets = effect(() => {
     this._loadingService.start();
@@ -99,16 +111,17 @@ export class ListTicketsComponent {
     this.client.set(client);
   }
 
-  protected onPageChange(event: PageEvent) {
-    console.log(event);
+  protected onPageChange({ pageIndex, pageSize }: PageEvent) {
+    this._pagination.set({ skip: pageIndex * pageSize, take: pageSize });
   }
 
   protected onRowClicked({ id }: iTicket) {
-    this._router.navigate([`ticket/${id}`]);
+    this._router.navigate([`ticket/details/${id}`]);
   }
 
   protected openFilterDialog() {
     this._bottomSheet.open(TicketFiltersDialogComponent, {
+      autoFocus: false,
       data: {
         changeClient: this.onChangeClient.bind(this),
         changeCategory: this.onChangeCategory.bind(this),
