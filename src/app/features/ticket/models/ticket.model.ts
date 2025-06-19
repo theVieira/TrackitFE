@@ -8,6 +8,7 @@ import { eTicketTag } from '../enums/ticket-tag.enum';
 import { iAttachment } from '@shared/models/attachment.model';
 import { iNote } from '@shared/models/note.model';
 import { iTimeAction } from '@shared/models/time-action.model';
+import { iTicketTimeline } from './ticket-timeline.model';
 
 export interface iTicket extends iBaseEntity {
   client: iClient;
@@ -20,4 +21,5 @@ export interface iTicket extends iBaseEntity {
   attachments: iAttachment[];
   notes: iNote[];
   progress: iTimeAction[];
+  timeline?: iTicketTimeline[];
 }
