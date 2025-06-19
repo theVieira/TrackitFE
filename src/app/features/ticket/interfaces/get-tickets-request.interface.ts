@@ -3,7 +3,7 @@ import { eTicketCategory } from '../enums/ticket-category.enum';
 import { eTicketPriority } from '../enums/ticket-priority.enum';
 import { eTicketStatus } from '../enums/ticket-status.enum';
 
-export interface iGetTickets {
+export interface iGetTicketsRequest {
   status: eTicketStatus[];
   priority: eTicketPriority[];
   category: eTicketCategory[];
