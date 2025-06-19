@@ -4,6 +4,8 @@
       "TITLE": "Chamados",
       "NEW_TICKET_BUTTON": "Novo ticket",
       "DROPDOWN_FILTERS_TITLE": "Filtros",
+      "CREATED_BY": "Criado por",
+      "CLIENT": "Cliente",
       "DESCRIPTION": {
         "TITLE": "Descrição"
       },
@@ -27,6 +29,20 @@
         "MEDIUM": "Normal",
         "HIGH": "Alta",
         "URGENT": "Urgente"
+      },
+      "TAG": {
+        "TITLE": "Tag",
+        "CRITICAL": "Crítico",
+        "NETWORKFAILURE": "Rede",
+        "SOFTWAREFAILURE": "Software",
+        "HARDWAREFAILURE": "Hardware",
+        "MAINTENANCE": "Manutenção"
+      },
+      "TIMELINE": {
+        "EVENT_TYPE": {
+          "CREATE": "Criado",
+          "PROGRESS": "Progresso"
+        }
       }
     },
     "CLIENT": {

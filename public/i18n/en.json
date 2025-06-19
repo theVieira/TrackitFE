@@ -4,6 +4,8 @@
       "TITLE": "Tickets",
       "NEW_TICKET_BUTTON": "New ticket",
       "DROPDOWN_FILTERS_TITLE": "Filters",
+      "CREATED_BY": "Created by",
+      "CLIENT": "Client",
       "DESCRIPTION": {
         "TITLE": "Description"
       },
@@ -27,6 +29,20 @@
         "MEDIUM": "Normal",
         "HIGH": "High",
         "URGENT": "Urgent"
+      },
+      "TAG": {
+        "TITLE": "Tag",
+        "CRITICAL": "Critical",
+        "NETWORKFAILURE": "Rede",
+        "SOFTWAREFAILURE": "Software",
+        "HARDWAREFAILURE": "Hardware",
+        "MAINTENANCE": "Maintenance"
+      },
+      "TIMELINE": {
+        "EVENT_TYPE": {
+          "CREATE": "Created",
+          "PROGRESS": "Progress"
+        }
       }
     },
     "CLIENT": {
