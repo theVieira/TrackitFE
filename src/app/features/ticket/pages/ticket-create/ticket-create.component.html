@@ -1,1 +1,67 @@
-<p>create-ticket works!</p>
+<div class="w-full flex items-center justify-center">
+  <mat-card class="p-12">
+    <mat-card-title-group>
+      <mat-card-title> Criar um novo chamado </mat-card-title>
+      <mat-card-subtitle class="brightness-75"
+        >Preencha o formulário para criar um novo chamado</mat-card-subtitle
+      >
+    </mat-card-title-group>
+    <form [formGroup]="form" (submit)="onSubmit($event)">
+      <mat-card-content class="!flex !flex-col !gap-2">
+        <app-select-client-autocomplete
+          (clientSelected)="onClientSelected($event)"
+        />
+        <mat-form-field>
+          <mat-label>Descrição</mat-label>
+          <textarea
+            type="text"
+            formControlName="description"
+            matInput
+            placeholder="máx 600"
+          ></textarea>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Prioridade</mat-label>
+          <mat-select formControlName="priority">
+            <mat-option value="Low">Baixa</mat-option>
+            <mat-option value="Medium">Normal</mat-option>
+            <mat-option value="High">Alta</mat-option>
+            <mat-option value="Urgent">Urgente</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Categoria</mat-label>
+          <mat-select formControlName="category">
+            <mat-option value="Daily">Diário</mat-option>
+            <mat-option value="Delivery">Entrega</mat-option>
+            <mat-option value="Budget">Orçamento</mat-option>
+            <mat-option value="Maintenance">Manutenção</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Tag</mat-label>
+          <mat-select formControlName="tag">
+            <mat-option value="Critical">Crítico</mat-option>
+            <mat-option value="NetworkFailure">Rede</mat-option>
+            <mat-option value="HardwareFailure">Hardware</mat-option>
+            <mat-option value="SoftwareFailure">Software</mat-option>
+            <mat-option value="Maintenance">Manutenção</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-card-actions class="w-full flex justify-end gap-2">
+          <button mat-button type="button">
+            <mat-icon>delete</mat-icon>
+            Cancelar
+          </button>
+          <button mat-flat-button type="submit" [disabled]="form.invalid">
+            <mat-icon>save</mat-icon>
+            Salvar
+          </button>
+        </mat-card-actions>
+      </mat-card-footer>
+    </form>
+  </mat-card>
+</div>

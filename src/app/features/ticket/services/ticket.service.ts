@@ -4,7 +4,9 @@ import { iPaginatedResponse } from '@shared/interfaces/paginated-response.interf
 import { Observable } from 'rxjs';
 import { iTicket } from '../models/ticket.model';
 import { environment } from '@environment';
-import { iGetTickets } from '../interfaces/get-tickets.interface';
+import { iGetTicketsRequest } from '../interfaces/get-tickets-request.interface';
+import { iCreateTicketRequest } from '../interfaces/create-ticket-request.interface';
+import { iTicketTimeline } from '../models/ticket-timeline.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +20,7 @@ export class TicketService {
     priority,
     status,
     client,
-  }: iGetTickets): Observable<iPaginatedResponse<iTicket>> {
+  }: iGetTicketsRequest): Observable<iPaginatedResponse<iTicket>> {
     if (client == undefined) client = '';
 
     const statusQuery = status.map((s) => `status=${s}`).join('&');
@@ -38,14 +40,42 @@ export class TicketService {
 
   public setProgress(id: string): Observable<object> {
     return this._httpClient.put(
-      `${environment.apiUrl}/tickets/progress/${id}`,
+      `${environment.apiUrl}/tickets/${id}/progress`,
       {}
     );
   }
 
   public setFinish(id: string, feedback: string): Observable<object> {
-    return this._httpClient.put(`${environment.apiUrl}/tickets/finish/${id}`, {
+    return this._httpClient.put(`${environment.apiUrl}/tickets/${id}/finish`, {
       feedback,
+    });
+  }
+
+  public createTicket({
+    category,
+    clientId,
+    description,
+    priority,
+    tag,
+  }: iCreateTicketRequest): Observable<object> {
+    return this._httpClient.post(`${environment.apiUrl}/tickets`, {
+      category,
+      clientId,
+      description,
+      priority,
+      tag,
+    });
+  }
+
+  public getTicketTimeline(id: string): Observable<iTicketTimeline[]> {
+    return this._httpClient.get<iTicketTimeline[]>(
+      `${environment.apiUrl}/tickets/${id}/timeline`
+    );
+  }
+
+  public addTicketNote(id: string, content: string) {
+    return this._httpClient.post(`${environment.apiUrl}/${id}/note`, {
+      content,
     });
   }
 }

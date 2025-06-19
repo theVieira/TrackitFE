@@ -9,7 +9,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: ':id',
+    path: 'details/:id',
     loadComponent: () =>
       import('./pages/ticket-details/ticket-details.component').then(
         (x) => x.TicketDetailsComponent
