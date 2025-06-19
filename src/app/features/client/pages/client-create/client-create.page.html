@@ -1,0 +1,53 @@
+<div class="w-full flex items-center justify-center">
+  <mat-card class="p-12">
+    <mat-card-title-group>
+      <mat-card-title> Criar um novo cliente </mat-card-title>
+      <mat-card-subtitle class="brightness-75"
+        >Preencha o formulário para criar um novo cliente</mat-card-subtitle
+      >
+    </mat-card-title-group>
+    <form [formGroup]="form" (submit)="onSubmit($event)">
+      <mat-card-content class="!flex !flex-col !gap-2">
+        <mat-form-field>
+          <mat-label> Nome </mat-label>
+          <input type="text" matInput formControlName="name" />
+          <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label> CNPJ </mat-label>
+          <input type="text" matInput formControlName="cnpj" />
+          <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label> Phone </mat-label>
+          <input type="text" matInput formControlName="phone" />
+          <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label> Email </mat-label>
+          <input type="email" matInput formControlName="email" />
+          <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label> TAG </mat-label>
+          <mat-select formControlName="tag">
+            <mat-option value="Vip">VIP</mat-option>
+          </mat-select>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-card-actions class="w-full flex justify-end gap-2">
+          <button mat-button type="button">
+            <mat-icon>delete</mat-icon>
+            Cancelar
+          </button>
+          <button mat-flat-button type="submit" [disabled]="form.invalid">
+            <mat-icon>save</mat-icon>
+            Salvar
+          </button>
+        </mat-card-actions>
+      </mat-card-footer>
+    </form>
+  </mat-card>
+</div>

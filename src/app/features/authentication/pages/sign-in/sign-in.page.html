@@ -1,0 +1,66 @@
+<form
+  [formGroup]="form"
+  (submit)="onSubmit($event)"
+  class="h-screen flex items-center justify-center"
+>
+  <div class="flex flex-col w-sm">
+    <div class="pb-4">
+      <h1 class="text-zinc-200 text-4xl font-bold font-mono">TRACKIT</h1>
+      <p class="text-zinc-400 text-sm">Entre com suas credenciais</p>
+    </div>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        matInput
+        formControlName="email"
+      />
+      <mat-hint></mat-hint>
+      @if(form.controls.email.hasError('required')) {
+      <mat-error>O email é obrigatório</mat-error>
+      } @if(form.controls.email.hasError('email')) {
+      <mat-error>Email inválido</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Senha</mat-label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        matInput
+        formControlName="password"
+      />
+      <mat-hint></mat-hint>
+      @if(form.controls.password.hasError('required')) {
+      <mat-error>A senha é obrigatória</mat-error>
+      } @if(form.controls.password.hasError('minLength')) {
+      <mat-error>A senha deve ter no mínimo 6 caracteres</mat-error>
+      }
+    </mat-form-field>
+    <a
+      [routerLink]="'/auth/forgot-password'"
+      class="font-semibold text-sm text-zinc-400 mt-[-15px] pt-4"
+    >
+      Esqueceu sua senha?
+      <span class="text-zinc-300 cursor-pointer">Clique aqui</span>
+    </a>
+    <button
+      type="submit"
+      mat-flat-button
+      class="mt-4"
+      [disabled]="form.invalid"
+    >
+      Entrar
+    </button>
+  </div>
+</form>
+<div class="w-lvw h-lvh absolute top-0 left-0 z-[-1] brightness-25">
+  <img
+    src="/assets/images/sign-in-illustration.svg"
+    alt="illustration"
+    class="object-cover w-full h-full"
+  />
+</div>

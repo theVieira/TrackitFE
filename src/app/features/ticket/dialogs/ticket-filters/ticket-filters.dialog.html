@@ -1,0 +1,9 @@
+<mat-nav-list
+  class="!flex !gap-2 !flex-wrap !justify-center !items-center !p-12 !pb-6"
+>
+  <app-client-autocomplete (clientSelected)="onChangeClient($event)" />
+  <app-category-filter (categoryChanged)="onChangeCategory($event)" />
+  <app-priority-filter (priorityChanged)="onChangePriority($event)" />
+  <app-status-filter (statusChanged)="onChangeStatus($event)" />
+  <app-range-date-picker />
+</mat-nav-list>

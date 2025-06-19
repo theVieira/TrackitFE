@@ -3,3 +3,9 @@
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
