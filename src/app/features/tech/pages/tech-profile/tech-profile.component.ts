@@ -12,6 +12,6 @@ import { TranslocoModule } from '@jsverse/transloco';
     MatCardModule,
     TranslocoModule,
   ],
-  templateUrl: './profile.component.html',
+  templateUrl: './tech-profile.component.html',
 })
-export class ProfileComponent {}
+export class TechProfileComponent {}
