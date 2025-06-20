@@ -70,7 +70,11 @@ export class TicketDetailsPage {
   }
 
   protected openAddNoteDialog(): void {
-    this._dialog.open(TicketAddNoteDialog);
+    this._dialog.open(TicketAddNoteDialog, {
+      data: {
+        id: this.ticket().id,
+      },
+    });
   }
 
   protected setProgress(): void {

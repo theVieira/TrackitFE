@@ -80,13 +80,18 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="flex justify-between">
-            @if(ticket().notes.length === 0) { Ainda não há notas } @for (note
-            of ticket().notes; track note.id) { {{ note.content }}
-            <button mat-button>
-              <mat-icon>delete</mat-icon>
-              Deletar nota
-            </button>
-            }
+            @if(ticket().notes.length === 0) { Ainda não há notas }
+            <div class="flex flex-col gap-2">
+              @for (note of ticket().notes; track note.id) {
+              <div>
+                {{ note.content }}
+                <button mat-button>
+                  <mat-icon>delete</mat-icon>
+                  Deletar nota
+                </button>
+              </div>
+              }
+            </div>
             <button
               mat-stroked-button
               class="max-w-fit"
