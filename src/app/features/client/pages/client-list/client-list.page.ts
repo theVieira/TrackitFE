@@ -40,14 +40,14 @@ export class ListClientsPage {
   private readonly _clientService = inject(ClientService);
   private readonly _pagination = signal<iPaginatedRequest>({
     skip: 0,
-    take: 20,
+    take: 10,
   });
 
   private client = signal<iClient | null>(null);
 
   protected clients = signal<iClient[]>([]);
   protected total = signal<number>(0);
-  protected pageSize = signal<number>(20);
+  protected pageSize = signal<number>(this._pagination().take!);
   protected loading = signal(this._loadingService.loading());
 
   private readonly _getClients = effect(() => {
@@ -68,8 +68,8 @@ export class ListClientsPage {
   @ViewChild('tagTemplate', { static: true })
   tagTemplate!: TemplateRef<eClientTag>;
 
-  protected onPageChange(ev: PageEvent) {
-    console.log(ev);
+  protected onPageChange({ pageIndex, pageSize }: PageEvent) {
+    this._pagination.set({ skip: pageIndex * pageSize, take: pageSize });
   }
 
   protected onRowClicked({ id }: iClient) {
