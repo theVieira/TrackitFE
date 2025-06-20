@@ -70,6 +70,7 @@ export class CreateTicketPage {
 
     this._ticketService.createTicket(payload).subscribe({
       next: () => {
+        this.form.reset();
         this._notificationService.success('Ticket criado com sucesso');
       },
       error: (err) => {
