@@ -57,6 +57,7 @@ export class CreateClientPage {
       .pipe()
       .subscribe({
         next: () => {
+          this.form.reset();
           this._notificationService.success('Cliente criado');
         },
         error: (err) => {
