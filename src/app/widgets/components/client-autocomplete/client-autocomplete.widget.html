@@ -1,4 +1,4 @@
-<mat-form-field>
+<mat-form-field class="w-full">
   <mat-label>Cliente</mat-label>
   <input
     type="text"
@@ -9,9 +9,9 @@
   />
   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
     @for (client of filteredClients(); track client) {
-    <mat-option [value]="client" (click)="onClientSelected(client)">{{
-      client.name
-    }}</mat-option>
+    <mat-option [value]="client" (click)="onClientSelected(client)"
+      >{{ client.name }}</mat-option
+    >
     }
   </mat-autocomplete>
 </mat-form-field>
