@@ -74,7 +74,7 @@ export class TicketService {
   }
 
   public addTicketNote(id: string, content: string) {
-    return this._httpClient.post(`${environment.apiUrl}/${id}/note`, {
+    return this._httpClient.post(`${environment.apiUrl}/tickets/${id}/note`, {
       content,
     });
   }
