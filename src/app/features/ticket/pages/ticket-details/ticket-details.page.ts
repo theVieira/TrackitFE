@@ -10,13 +10,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { AvatarShared } from '@shared/components/avatar/avatar.shared';
 import { iTicketTimeline } from '@features/ticket/models/ticket-timeline.model';
 import { MatDialog } from '@angular/material/dialog';
-import { TicketAddNoteDialog } from '@features/ticket/pages/ticket-details/dialogs/ticket-add-note/ticket-add-note.dialog';
 import { NotificationService } from '@shared/services/notification.service';
 import { eTicketStatus } from '@features/ticket/enums/ticket-status.enum';
 import { TicketFinishDialog } from '@features/ticket/pages/ticket-details/dialogs/ticket-finish/ticket-finish-dialog.component';
 import { ConfirmDelete } from '@widgets/dialogs/confirm-delete/confirm-delete.dialog';
-import { DatePipe } from '@angular/common';
 import { TicketTimelineComponent } from './components/ticket-timeline/ticket-timeline.component';
+import { TicketNotesComponent } from './components/ticket-notes/ticket-notes.component';
 
 @Component({
   selector: 'app-ticket-details',
@@ -27,8 +26,8 @@ import { TicketTimelineComponent } from './components/ticket-timeline/ticket-tim
     TranslocoModule,
     AvatarShared,
     MatExpansionModule,
-    DatePipe,
     TicketTimelineComponent,
+    TicketNotesComponent,
   ],
   templateUrl: './ticket-details.page.html',
 })
@@ -69,14 +68,6 @@ export class TicketDetailsPage {
       .subscribe((data) => {
         if (data) this.signalTimeline.set(data);
       });
-  }
-
-  protected openAddNoteDialog(): void {
-    this._dialog.open(TicketAddNoteDialog, {
-      data: {
-        id: this.ticket().id,
-      },
-    });
   }
 
   protected setProgress(): void {

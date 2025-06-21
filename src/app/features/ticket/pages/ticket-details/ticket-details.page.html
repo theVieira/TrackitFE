@@ -51,41 +51,7 @@
       </mat-card>
 
       <app-ticket-timeline [timeline]="timeline()" />
-
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title class="flex items-center gap-1">
-              <mat-icon>article</mat-icon>
-              Notas
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <div class="flex justify-between">
-            @if(ticket().notes.length === 0) { Ainda não há notas }
-            <div class="flex flex-col gap-2">
-              @for (note of ticket().notes; track note.id) {
-              <div class="flex items-center gap-4">
-                <span>
-                  <p>👤 {{note.author.name}}</p>
-                  <p>⌚ {{note.createdAt | date: 'dd/MM/yyyy HH:mm'}}</p>
-                  <p>💬 {{ note.content }}</p>
-                </span>
-                <button mat-icon-button>
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
-              }
-            </div>
-            <button
-              mat-stroked-button
-              class="max-w-fit"
-              (click)="openAddNoteDialog()"
-            >
-              Adicionar nota
-            </button>
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion>
+      <app-ticket-notes [notes]="ticket().notes" [ticketId]="ticket().id" />
     </div>
     <div class="w-1/3 flex flex-col gap-6">
       <mat-card class="p-4">

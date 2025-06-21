@@ -39,10 +39,14 @@
         "MAINTENANCE": "Manutenção"
       },
       "TIMELINE": {
+        "TITLE": "Timeline",
         "EVENT_TYPE": {
           "CREATE": "Criado",
           "PROGRESS": "Progresso"
         }
+      },
+      "NOTE": {
+        "TITLE": "Notas"
       }
     },
     "CLIENT": {
