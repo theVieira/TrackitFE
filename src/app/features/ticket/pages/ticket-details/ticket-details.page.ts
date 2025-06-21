@@ -16,6 +16,7 @@ import { eTicketStatus } from '@features/ticket/enums/ticket-status.enum';
 import { TicketFinishDialog } from '@features/ticket/pages/ticket-details/dialogs/ticket-finish/ticket-finish-dialog.component';
 import { ConfirmDelete } from '@widgets/dialogs/confirm-delete/confirm-delete.dialog';
 import { DatePipe } from '@angular/common';
+import { TicketTimelineComponent } from './components/ticket-timeline/ticket-timeline.component';
 
 @Component({
   selector: 'app-ticket-details',
@@ -27,6 +28,7 @@ import { DatePipe } from '@angular/common';
     AvatarShared,
     MatExpansionModule,
     DatePipe,
+    TicketTimelineComponent,
   ],
   templateUrl: './ticket-details.page.html',
 })
