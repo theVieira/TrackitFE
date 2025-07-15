@@ -19,6 +19,7 @@ export class TicketService {
     category,
     priority,
     status,
+    date: { endDate, startDate },
     client,
   }: iGetTicketsRequest): Observable<iPaginatedResponse<iTicket>> {
     if (client == undefined) client = '';
@@ -27,8 +28,14 @@ export class TicketService {
     const categoryQuery = category.map((s) => `category=${s}`).join('&');
     const priorityQuery = priority.map((s) => `priority=${s}`).join('&');
 
+    let query = `skip=${skip}&take=${take}&${statusQuery}&${categoryQuery}&${priorityQuery}&client=${client}`;
+
+    if (endDate && startDate) {
+      query = `skip=${skip}&take=${take}&${statusQuery}&${categoryQuery}&${priorityQuery}&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&client=${client}`;
+    }
+
     return this._httpClient.get<iPaginatedResponse<iTicket>>(
-      `${environment.apiUrl}/tickets?skip=${skip}&take=${take}&${statusQuery}&${categoryQuery}&${priorityQuery}&client=${client}`
+      `${environment.apiUrl}/tickets?${query}`
     );
   }
 
@@ -76,6 +83,32 @@ export class TicketService {
   public addTicketNote(id: string, content: string) {
     return this._httpClient.post(`${environment.apiUrl}/tickets/${id}/note`, {
       content,
+    });
+  }
+
+  public addAttachment({ id, file }: { id: string; file: File }) {
+    const formData = new FormData();
+
+    formData.append('file', file);
+    formData.append('ticketId', id);
+
+    return this._httpClient.post(
+      `${environment.apiUrl}/tickets/attachment`,
+      formData
+    );
+  }
+
+  public deleteTicket(id: string): Observable<object> {
+    return this._httpClient.delete(`${environment.apiUrl}/tickets`, {
+      body: {
+        ticketId: id,
+      },
+    });
+  }
+
+  public reopenTicket(id: string): Observable<object> {
+    return this._httpClient.put(`${environment.apiUrl}/tickets/reopen`, {
+      ticketId: id,
     });
   }
 }

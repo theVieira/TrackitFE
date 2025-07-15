@@ -1,0 +1,40 @@
+<mat-accordion *transloco="let t; prefix: 'FEATURES.TICKET.NOTE'">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <span class="flex items-center gap-1">
+        <mat-icon>article</mat-icon>
+        <p>{{ t("TITLE") }}</p>
+      </span>
+    </mat-expansion-panel-header>
+    <div class="flex justify-between">
+      @if (ticket.notes.length === 0) {
+      <p>{{ t("NOT_FOUND") }}</p>
+      }
+
+      <div class="flex flex-col gap-4">
+        @for (item of ticket.notes; track item.id) {
+        <div>
+          <span class="flex items-center gap-1">
+            <mat-icon class="text-[20px]!">person</mat-icon>
+            <p class="pb-[6px]">{{ item.author.name }}</p>
+          </span>
+          <span class="flex items-center gap-1">
+            <mat-icon class="text-[18px]!">timer</mat-icon>
+            <p class="pb-[6px]">
+              {{ item.createdAt | date : "dd/MM/yyyy HH:mm" }}
+            </p>
+          </span>
+          <span class="flex items-center gap-1">
+            <mat-icon class="text-[18px]!">message</mat-icon>
+            <p class="pb-[6px]">{{ item.content }}</p>
+          </span>
+        </div>
+        }
+      </div>
+
+      <button mat-stroked-button (click)="openAddNoteDialog()">
+        Adicionar nota
+      </button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

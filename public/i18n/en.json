@@ -9,6 +9,9 @@
       "DESCRIPTION": {
         "TITLE": "Description"
       },
+      "CLIENT_INFORMATION": {
+        "TITLE": "Informações do cliente"
+      },
       "CATEGORY": {
         "TITLE": "Category",
         "DAILY": "Daily",
@@ -42,11 +45,32 @@
         "TITLE": "Timeline",
         "EVENT_TYPE": {
           "CREATE": "Created",
-          "PROGRESS": "Progress"
+          "PROGRESS": "Progress",
+          "FINISH": "Finished",
+          "REOPEN": "Reopen"
         }
       },
       "NOTE": {
-        "TITLE": "Notes"
+        "TITLE": "Notes",
+        "NOT_FOUND": "No notes yet"
+      },
+      "ACTIONS": {
+        "TITLE": "Actions",
+        "PROGRESS_BUTTON": "Set progress",
+        "FINISH_BUTTON": "Finish ticket",
+        "DELETE_BUTTON": "Delete ticket",
+        "REOPEN_BUTTON": "Reabrir o chamado"
+      },
+      "ATTACHMENT": {
+        "TITLE": "Attachments",
+        "NOT_FOUND": "Not attachments yet",
+        "ADD_BUTTON": "Add attachment"
+      },
+      "FINISH_DIALOG": {
+        "TITLE": "Finish ticket",
+        "CANCEL_BUTTON": "Cancel",
+        "SAVE_BUTTON": "Finish",
+        "TEXT_AREA_LABEL": "Feedback"
       }
     },
     "CLIENT": {

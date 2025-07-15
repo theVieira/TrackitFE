@@ -1,1 +1,25 @@
-DIALOGO
+<div
+  class="flex flex-col gap-4"
+  *transloco="let t; prefix: 'FEATURES.TICKET.FINISH_DIALOG'"
+>
+  <h3 matDialogTitle>{{ t("TITLE") }}</h3>
+  <form [formGroup]="form" (submit)="onSubmit($event)">
+    <mat-dialog-content>
+      <mat-form-field>
+        <mat-label>{{ t("TEXT_AREA_LABEL") }}</mat-label>
+        <textarea
+          matInput
+          placeholder="max 600 char"
+          formControlName="content"
+        ></textarea>
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions class="w-full! flex! items-center! justify-end!">
+      <button mat-button mat-dialog-close>{{ t("CANCEL_BUTTON") }}</button>
+      <button mat-button type="submit">
+        <mat-icon>save</mat-icon>
+        {{ t("SAVE_BUTTON") }}
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div>

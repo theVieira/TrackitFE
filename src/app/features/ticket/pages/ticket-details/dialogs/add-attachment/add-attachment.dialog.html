@@ -1,0 +1,33 @@
+<h3 matDialogTitle>Adicionar um anexo</h3>
+<form (submit)="onSubmit($event)">
+  <mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Selecione um arquivo</mat-label>
+      <input
+        type="file"
+        (change)="onFileSelected($event)"
+        hidden
+        #fileInput
+        accept=".pdf,.jpg,.png,.xls,.xlsx"
+      />
+      <input
+        matInput
+        [value]="selectedFile?.name"
+        placeholder="Nenhum arquivo selecionado"
+        readonly
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="fileInput.click()"
+        type="button"
+      >
+        <mat-icon>attach_file</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions class="w-full! flex! items-center! justify-end! gap-2">
+    <button mat-button matDialogClose>Cancelar</button>
+    <button mat-button type="submit">Anexar</button>
+  </mat-dialog-actions>
+</form>

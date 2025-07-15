@@ -9,87 +9,22 @@
     <mat-card-title class="max-w-fit">
       Ticket #{{ ticket().smallId }}
     </mat-card-title>
-    <button mat-icon-button (click)="print()">
-      <mat-icon>print</mat-icon>
-    </button>
+    <app-print-button />
   </mat-card>
-  <div class="w-full flex gap-6 items-start justify-between px-6">
-    <div class="w-2/3 flex flex-col gap-6">
-      <mat-card class="p-6">
-        <div class="ml-[-0.2rem] flex gap-2 mb-4">
-          <div class="w-fit py-1 px-2 bg-zinc-500 rounded-2xl">
-            <strong>{{ t("STATUS.TITLE") }}</strong>
-            {{ t("STATUS." + ticket().status.toUpperCase()) }}
-          </div>
-          <div class="w-fit py-1 px-2 bg-zinc-500 rounded-2xl">
-            <strong>{{ t("CATEGORY.TITLE") }}</strong>
-            {{ t("CATEGORY." + ticket().category.toUpperCase()) }}
-          </div>
-          <div class="w-fit py-1 px-2 bg-zinc-500 rounded-2xl">
-            <strong>{{ t("PRIORITY.TITLE") }}</strong>
-            {{ t("PRIORITY." + ticket().priority.toUpperCase()) }}
-          </div>
-          <div class="w-fit py-1 px-2 bg-zinc-500 rounded-2xl">
-            <strong>{{ t("TAG.TITLE") }}</strong>
-            {{ t("TAG." + ticket().tag.toUpperCase()) }}
-          </div>
-        </div>
-        <div class="flex flex-col">
-          <strong> Descrição </strong>
-          {{ ticket().description }}
-        </div>
-        <hr class="my-6 brightness-50" />
-        <div class="flex flex-col">
-          <strong> Informações do cliente </strong>
-          @if(ticket().client.avatar) {
-          <app-avatar
-            [url]="ticket().client.avatar.url"
-            [alt]="ticket().client.avatar.smallId + '-Avatar'"
-          />
-          } {{ ticket().client.name }}
-        </div>
-      </mat-card>
-
+  <div
+    class="w-full flex gap-6 items-start justify-between px-6 flex-wrap lg:flex-nowrap"
+  >
+    <div class="w-full lg:w-2/3 flex flex-col gap-6">
+      <app-ticket-main-information [ticket]="ticket()" />
       <app-ticket-timeline [timeline]="timeline()" />
-      <app-ticket-notes [notes]="ticket().notes" [ticketId]="ticket().id" />
+      <app-ticket-notes [ticket]="ticket()" />
+      <app-ticket-attachments
+        [attachments]="ticket().attachments"
+        [ticketId]="ticket().id"
+      />
     </div>
-    <div class="w-1/3 flex flex-col gap-6">
-      <mat-card class="p-4">
-        <mat-card-title class="!mb-2">Actions</mat-card-title>
-        <div class="flex flex-col gap-2">
-          @if(ticket().status === eTicketStatus.OPEN) {
-          <button mat-stroked-button (click)="setProgress()">
-            <mat-icon>play_arrow</mat-icon>
-            Marcar em progresso
-          </button>
-          } @if(ticket().status === eTicketStatus.PROGRESS) {
-          <button mat-stroked-button>
-            <mat-icon>play_arrow</mat-icon>
-            Finalizar o chamado
-          </button>
-          }
-          <button mat-raised-button (click)="confirmDelete()">
-            <mat-icon>delete</mat-icon>
-            Deletar o chamado
-          </button>
-        </div>
-      </mat-card>
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title class="flex items-center gap-1">
-              <mat-icon>download</mat-icon>
-              Anexos
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <div>
-            @if(ticket().attachments.length === 0) { Ainda não há anexos } @for
-            (attachment of ticket().attachments; track attachment.id) {
-            <a [href]="attachment.url">{{ attachment.filename }}</a>
-            }
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion>
+    <div class="w-full lg:w-1/3 flex flex-col gap-6" appNoPrint>
+      <app-ticket-actions [ticket]="ticket()" (onUpdated)="getTimeline()" />
     </div>
   </div>
 </mat-card>

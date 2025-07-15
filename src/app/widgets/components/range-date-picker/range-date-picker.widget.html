@@ -3,8 +3,12 @@
 >
   <mat-label>{{ t("LABEL") }}</mat-label>
   <mat-date-range-input [rangePicker]="picker">
-    <input matStartDate [placeholder]="t('START_DATE')" />
-    <input matEndDate [placeholder]="t('END_DATE')" />
+    <input
+      matStartDate
+      [placeholder]="t('START_DATE')"
+      [formControl]="startDate"
+    />
+    <input matEndDate [placeholder]="t('END_DATE')" [formControl]="endDate" />
   </mat-date-range-input>
   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-date-range-picker #picker></mat-date-range-picker>

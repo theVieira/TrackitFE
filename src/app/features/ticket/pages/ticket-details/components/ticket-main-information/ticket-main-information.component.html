@@ -1,0 +1,46 @@
+<mat-card class="p-6" *transloco="let t; prefix: 'FEATURES.TICKET'">
+  <div class="ml-[-0.2rem] flex gap-2 mb-4 flex-wrap w-fit">
+    <div
+      class="w-fit py-1 px-2 rounded-2xl"
+      [style]="{ background: getStatusColor() }"
+    >
+      <strong>{{ t("STATUS.TITLE") }}</strong>
+      {{ t("STATUS." + ticket.status.toUpperCase()) }}
+    </div>
+    <div
+      class="w-fit py-1 px-2 rounded-2xl"
+      [style]="{ background: getCategoryColor() }"
+    >
+      <strong>{{ t("CATEGORY.TITLE") }}</strong>
+      {{ t("CATEGORY." + ticket.category.toUpperCase()) }}
+    </div>
+    <div
+      class="w-fit py-1 px-2 rounded-2xl"
+      [style]="{ background: getPriorityColor() }"
+    >
+      <strong>{{ t("PRIORITY.TITLE") }}</strong>
+      {{ t("PRIORITY." + ticket.priority.toUpperCase()) }}
+    </div>
+    <div
+      class="w-fit py-1 px-2 rounded-2xl"
+      [style]="{ background: getTagColor() }"
+    >
+      <strong>{{ t("TAG.TITLE") }}</strong>
+      {{ t("TAG." + ticket.tag.toUpperCase()) }}
+    </div>
+  </div>
+  <div class="flex flex-col text-wrap break-words">
+    <strong> {{ t("DESCRIPTION.TITLE") }} </strong>
+    {{ ticket.description }}
+  </div>
+  <hr class="my-6 brightness-50" />
+  <div class="flex flex-col">
+    <strong> {{ t("CLIENT_INFORMATION.TITLE") }} </strong>
+    @if(ticket.client.avatar) {
+    <app-avatar
+      [url]="ticket.client.avatar.url"
+      [alt]="ticket.client.avatar.smallId + '-Avatar'"
+    />
+    } {{ ticket.client.name }}
+  </div>
+</mat-card>

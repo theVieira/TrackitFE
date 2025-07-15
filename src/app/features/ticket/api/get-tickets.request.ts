@@ -8,5 +8,6 @@ export interface iGetTicketsRequest {
   priority: eTicketPriority[];
   category: eTicketCategory[];
   pagination: iPaginatedRequest;
+  date: { startDate?: Date; endDate?: Date };
   client?: string;
 }

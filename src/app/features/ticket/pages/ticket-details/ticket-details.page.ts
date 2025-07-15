@@ -7,15 +7,15 @@ import { iTicket } from '@features/ticket/models/ticket.model';
 import { TicketService } from '@features/ticket/services/ticket.service';
 import { TranslocoModule } from '@jsverse/transloco';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { AvatarShared } from '@shared/components/avatar/avatar.shared';
 import { iTicketTimeline } from '@features/ticket/models/ticket-timeline.model';
-import { MatDialog } from '@angular/material/dialog';
-import { NotificationService } from '@shared/services/notification.service';
 import { eTicketStatus } from '@features/ticket/enums/ticket-status.enum';
-import { TicketFinishDialog } from '@features/ticket/pages/ticket-details/dialogs/ticket-finish/ticket-finish-dialog.component';
-import { ConfirmDelete } from '@widgets/dialogs/confirm-delete/confirm-delete.dialog';
 import { TicketTimelineComponent } from './components/ticket-timeline/ticket-timeline.component';
 import { TicketNotesComponent } from './components/ticket-notes/ticket-notes.component';
+import { TicketActionsComponent } from './components/ticket-actions/ticket-actions.component';
+import { PrintButtonShared } from '../../../../shared/components/print-button/print-button.shared';
+import { NoPrintDirective } from '@widgets/directives/no-print.directive';
+import { TicketMainInformationComponent } from './components/ticket-main-information/ticket-main-information.component';
+import { TicketAttachmentsComponent } from './components/ticket-attachments/ticket-attachments.component';
 
 @Component({
   selector: 'app-ticket-details',
@@ -24,10 +24,14 @@ import { TicketNotesComponent } from './components/ticket-notes/ticket-notes.com
     MatButtonModule,
     MatIconModule,
     TranslocoModule,
-    AvatarShared,
     MatExpansionModule,
     TicketTimelineComponent,
     TicketNotesComponent,
+    TicketActionsComponent,
+    PrintButtonShared,
+    NoPrintDirective,
+    TicketMainInformationComponent,
+    TicketAttachmentsComponent,
   ],
   templateUrl: './ticket-details.page.html',
 })
@@ -35,8 +39,6 @@ export class TicketDetailsPage {
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
   private readonly _ticketService = inject(TicketService);
-  private readonly _dialog = inject(MatDialog);
-  private readonly _notificationService = inject(NotificationService);
 
   protected signalTicket = signal<iTicket | null>(null);
   protected signalTimeline = signal<iTicketTimeline[]>([]);
@@ -55,40 +57,18 @@ export class TicketDetailsPage {
     }
 
     this._ticketService.getTicketById(id).subscribe((data) => {
-      if (data) this.signalTicket.set(data);
-      else this._router.navigate(['not-found']);
+      if (data) {
+        this.signalTicket.set(data);
+        this.getTimeline();
+      } else this._router.navigate(['not-found']);
     });
-
-    this.getTicketTimeline();
   });
 
-  private getTicketTimeline() {
+  protected getTimeline() {
     this._ticketService
-      .getTicketTimeline(this.ticket()!.id)
+      .getTicketTimeline(this.ticket().id)
       .subscribe((data) => {
-        if (data) this.signalTimeline.set(data);
+        this.signalTimeline.set(data);
       });
-  }
-
-  protected setProgress(): void {
-    this._ticketService.setProgress(this.ticket().id).subscribe({
-      next: () => {
-        this.ticket().status = eTicketStatus.PROGRESS;
-        this.getTicketTimeline();
-        this._notificationService.success('Ticket marcado em progresso');
-      },
-    });
-  }
-
-  protected setFinish(): void {
-    this._dialog.open(TicketFinishDialog);
-  }
-
-  protected confirmDelete(): void {
-    this._dialog.open(ConfirmDelete);
-  }
-
-  protected print() {
-    window.print();
   }
 }

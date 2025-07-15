@@ -1,0 +1,40 @@
+<mat-card *transloco="let t; prefix: 'FEATURES.TICKET.ACTIONS'">
+  <mat-card-title-group class="px-6 py-6">
+    <mat-card-title>{{ t("TITLE") }}</mat-card-title>
+  </mat-card-title-group>
+  <mat-card-content class="flex! flex-col! gap-4! p-6! pt-0!">
+    @if (ticket.status === eTicketStatus.OPEN) {
+    <button
+      mat-stroked-button
+      class="flex items-center gap-1"
+      (click)="setProgress()"
+    >
+      <mat-icon>play_arrow</mat-icon>
+      <p>{{ t("PROGRESS_BUTTON") }}</p>
+    </button>
+    } @if(ticket.status === eTicketStatus.PROGRESS) {
+    <button
+      mat-stroked-button
+      class="flex items-center gap-1"
+      (click)="setFinish()"
+    >
+      <mat-icon>play_arrow</mat-icon>
+      <p>{{ t("FINISH_BUTTON") }}</p>
+    </button>
+    } @if(ticket.status === eTicketStatus.FINISH) {
+    <button
+      mat-stroked-button
+      class="flex items-center gap-1"
+      (click)="reopenTicket()"
+    >
+      <mat-icon>replay</mat-icon>
+      <p>{{ t("REOPEN_BUTTON") }}</p>
+    </button>
+    }
+
+    <button mat-stroked-button (click)="delete()">
+      <mat-icon>delete</mat-icon>
+      <p>{{ t("DELETE_BUTTON") }}</p>
+    </button>
+  </mat-card-content>
+</mat-card>

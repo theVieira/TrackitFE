@@ -29,6 +29,7 @@ export class TicketFiltersDialog {
     changeStatus: (status: eTicketStatus[]) => void;
     changePriority: (priority: eTicketPriority[]) => void;
     changeClient: (client: iClient | null) => void;
+    changeDate: ({ end, start }: { start: Date; end: Date }) => void;
   };
 
   protected onChangeCategory(category: eTicketCategory[]) {
@@ -45,5 +46,9 @@ export class TicketFiltersDialog {
 
   protected onChangeClient(client: iClient | null) {
     this._data.changeClient(client);
+  }
+
+  protected onChangeDate({ start, end }: { start: Date; end: Date }) {
+    this._data.changeDate({ start, end });
   }
 }

@@ -1,0 +1,38 @@
+<mat-accordion *transloco="let t; prefix: 'FEATURES.TICKET.TIMELINE'">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <span class="flex items-center gap-1">
+        <mat-icon>history_2</mat-icon>
+        <p>{{ t("TITLE") }}</p>
+      </span>
+    </mat-expansion-panel-header>
+    <div class="flex flex-col gap-4">
+      @for (item of timeline; track item.id) {
+      <span>
+        <span class="flex items-center gap-1">
+          <mat-icon class="text-[20px]!">redo</mat-icon>
+          <p class="pb-[1px]">
+            {{ t("EVENT_TYPE." + item.eventType.toUpperCase()) }}
+          </p>
+        </span>
+        <span class="flex items-center gap-1">
+          <mat-icon class="text-[18px]!">timer</mat-icon>
+          <p class="pb-[1px]">
+            {{ item.createdAt | date : "dd/MM/yyyy HH:mm" }}
+          </p>
+        </span>
+        <span class="flex items-center gap-1">
+          <mat-icon class="text-[20px]!">person</mat-icon>
+          <p class="pb-[1px]">{{ item.author.name }}</p>
+        </span>
+        @if (item.content) {
+        <span class="flex items-center gap-1">
+          <mat-icon class="text-[18px]!">message</mat-icon>
+          <p class="pb-[6px]!">{{ item.content }}</p>
+        </span>
+        }
+      </span>
+      }
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

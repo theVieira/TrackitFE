@@ -1,0 +1,39 @@
+<mat-accordion *transloco="let t; prefix: 'FEATURES.TICKET.ATTACHMENT'">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title class="flex items-center gap-1">
+        <mat-icon>download</mat-icon>
+        {{ t("TITLE") }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="flex justify-between items-start">
+      <div class="flex flex-col gap-4">
+        @if (attachments.length === 0) {
+        {{ t("NOT_FOUND") }}
+        } @for (item of attachments; track item.id) {
+        <a [href]="item.url" [download]="item.filename" target="_blank">
+          <p class="flex items-center">
+            <mat-icon class="text-[18px]!">attachment</mat-icon>
+            <span class="pb-[4px]">{{
+              item.filename.replace(ticketId.substring(0, 8) + "-", "")
+            }}</span>
+          </p>
+          <p class="flex items-center">
+            <mat-icon class="text-[18px]!">timer</mat-icon>
+            <span class="pb-[4px]">{{
+              item.createdAt | date : "dd/MM/yyyy HH/mm"
+            }}</span>
+          </p>
+          <p class="flex items-center">
+            <mat-icon class="text-[18px]!">file_upload</mat-icon>
+            <span class="pb-[4px]"> {{ item.uploadedBy.name }}</span>
+          </p>
+        </a>
+        }
+      </div>
+      <button mat-stroked-button (click)="addAttachment()">
+        {{ t("ADD_BUTTON") }}
+      </button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

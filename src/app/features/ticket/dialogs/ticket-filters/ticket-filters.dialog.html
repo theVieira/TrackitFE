@@ -5,5 +5,5 @@
   <app-category-filter (categoryChanged)="onChangeCategory($event)" />
   <app-priority-filter (priorityChanged)="onChangePriority($event)" />
   <app-status-filter (statusChanged)="onChangeStatus($event)" />
-  <app-range-date-picker />
+  <app-range-date-picker (dateSelected)="onChangeDate($event)" />
 </mat-nav-list>

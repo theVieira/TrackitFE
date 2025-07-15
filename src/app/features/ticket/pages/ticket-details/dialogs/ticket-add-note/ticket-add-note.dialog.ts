@@ -44,7 +44,7 @@ export class TicketAddNoteDialog {
       .subscribe({
         next: (res) => {
           this._notificationService.success('Nota adicionada com sucesso');
-          this._dialogRef.close({ res });
+          this._dialogRef.close(res);
         },
       });
   }

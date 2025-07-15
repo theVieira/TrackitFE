@@ -14,7 +14,12 @@
   [loading]="loading()"
   (pageChange)="onPageChange($event)"
   (rowClicked)="onRowClicked($event)"
-  [displayedColumns]="[
+  [displayedColumns]="isMobile ? [
+    'client',
+    'description',
+    'status',
+    'category',
+  ] : [
     'client',
     'createdBy',
     'description',
@@ -46,35 +51,41 @@
     {{ t("NEW_TICKET_BUTTON") }}
   </button>
 
-  <ng-template #clientTemplate let-ticket>{{ ticket.client.name }}</ng-template>
+  <ng-template #clientTemplate let-ticket>
+    <ng-container> {{ ticket.client.name }}</ng-container>
+  </ng-template>
 
   <ng-template #statusTemplate let-ticket>
-    {{ t("STATUS." + ticket.status.toUpperCase()) }}
+    <ng-container
+      >{{ t("STATUS." + ticket.status.toUpperCase()) }}</ng-container
+    >
   </ng-template>
 
   <ng-template #priorityTemplate let-ticket>
-    {{ t("PRIORITY." + ticket.priority.toUpperCase()) }}
+    <ng-container
+      >{{ t("PRIORITY." + ticket.priority.toUpperCase()) }}</ng-container
+    >
   </ng-template>
 
   <ng-template #categoryTemplate let-ticket>
-    {{ t("CATEGORY." + ticket.category.toUpperCase()) }}
+    <ng-container
+      >{{ t("CATEGORY." + ticket.category.toUpperCase()) }}</ng-container
+    >
   </ng-template>
 
   <ng-template #descriptionTemplate let-ticket>
-    {{ ticket.description }}
+    <ng-container>{{ ticket.description }}</ng-container>
   </ng-template>
 
   <ng-template #tagTemplate let-ticket>
-    {{ t("TAG." + ticket.tag.toUpperCase()) }}
+    <ng-container> {{ t("TAG." + ticket.tag.toUpperCase()) }} </ng-container>
   </ng-template>
 
   <ng-template #createdByTemplate let-ticket>
-    {{ ticket.createdBy.name }}
+    <ng-container> {{ ticket.createdBy.name }} </ng-container>
   </ng-template>
 
-  <ng-container class="hidden">
-    <app-category-filter (categoryChanged)="onChangeCategory($event)" />
-    <app-priority-filter (priorityChanged)="onChangePriority($event)" />
-    <app-status-filter (statusChanged)="onChangeStatus($event)" />
-  </ng-container>
+  <app-category-filter (categoryChanged)="onChangeCategory($event)" />
+  <app-priority-filter (priorityChanged)="onChangePriority($event)" />
+  <app-status-filter (statusChanged)="onChangeStatus($event)" />
 </app-list-layout>

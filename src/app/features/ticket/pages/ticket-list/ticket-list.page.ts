@@ -59,11 +59,15 @@ export class ListTicketsPage {
   private category = signal<eTicketCategory[]>(CATEGORY_FILTER_CONST);
   private status = signal<eTicketStatus[]>(STATUS_FILTER_CONST);
   private priority = signal<eTicketPriority[]>(PRIORITY_FILTER_CONST);
+  private startDate = signal<Date | undefined>(undefined);
+  private endDate = signal<Date | undefined>(undefined);
 
   protected pageSize = signal<number>(this._pagination().take!);
   protected tickets = signal<iTicket[]>([]);
   protected total = signal<number>(0);
   protected loading = signal<boolean>(this._loadingService.loading());
+
+  protected isMobile = window.innerWidth <= 768;
 
   @ViewChild('clientTemplate', { static: true })
   clientTemplate!: TemplateRef<iClient>;
@@ -87,6 +91,7 @@ export class ListTicketsPage {
         category: this.category(),
         priority: this.priority(),
         status: this.status(),
+        date: { endDate: this.endDate(), startDate: this.startDate() },
       })
       .subscribe(({ items, total }) => {
         this.tickets.set(items);
@@ -111,6 +116,11 @@ export class ListTicketsPage {
     this.client.set(client);
   }
 
+  protected onChangeDate({ start, end }: { start: Date; end: Date }) {
+    this.startDate.set(start);
+    this.endDate.set(end);
+  }
+
   protected onPageChange({ pageIndex, pageSize }: PageEvent) {
     this._pagination.set({ skip: pageIndex * pageSize, take: pageSize });
   }
@@ -127,6 +137,7 @@ export class ListTicketsPage {
         changeCategory: this.onChangeCategory.bind(this),
         changePriority: this.onChangePriority.bind(this),
         changeStatus: this.onChangeStatus.bind(this),
+        changeDate: this.onChangeDate.bind(this),
       },
     });
   }
