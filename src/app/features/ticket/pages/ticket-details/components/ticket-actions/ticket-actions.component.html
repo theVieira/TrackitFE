@@ -3,6 +3,11 @@
     <mat-card-title>{{ t("TITLE") }}</mat-card-title>
   </mat-card-title-group>
   <mat-card-content class="flex! flex-col! gap-4! p-6! pt-0!">
+    <button mat-stroked-button class="flex items-center gap-1" (click)="edit()">
+      <mat-icon>edit</mat-icon>
+      <p>{{ t("EDIT_BUTTON") }}</p>
+    </button>
+
     @if (ticket.status === eTicketStatus.OPEN) {
     <button
       mat-stroked-button

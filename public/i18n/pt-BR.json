@@ -59,7 +59,8 @@
         "PROGRESS_BUTTON": "Marcar em progresso",
         "FINISH_BUTTON": "Finalizar o chamado",
         "DELETE_BUTTON": "Deletar o chamado",
-        "REOPEN_BUTTON": "Reabrir o chamado"
+        "REOPEN_BUTTON": "Reabrir o chamado",
+        "EDIT_BUTTON": "Editar chamado"
       },
       "ATTACHMENT": {
         "TITLE": "Anexos",

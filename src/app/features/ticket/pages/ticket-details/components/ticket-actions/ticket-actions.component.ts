@@ -12,6 +12,7 @@ import { NotificationService } from '@shared/services/notification.service';
 import { TicketFinishDialog } from '../../dialogs/ticket-finish/ticket-finish-dialog.component';
 import { ConfirmDeleteDialog } from '@widgets/dialogs/confirm-delete/confirm-delete.dialog';
 import { Router } from '@angular/router';
+import { TicketEditDialog } from '@features/ticket/dialogs/ticket-edit/ticket-edit.dialog';
 
 @Component({
   selector: 'app-ticket-actions',
@@ -77,5 +78,9 @@ export class TicketActionsComponent {
         this.onUpdated.emit();
       },
     });
+  }
+
+  protected edit() {
+    this._dialog.open(TicketEditDialog);
   }
 }

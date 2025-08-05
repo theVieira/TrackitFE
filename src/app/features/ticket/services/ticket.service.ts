@@ -111,4 +111,10 @@ export class TicketService {
       ticketId: id,
     });
   }
+
+  public deleteAttachment(id: string): Observable<object> {
+    return this._httpClient.delete(
+      `${environment.apiUrl}/tickets/attachment/${id}`
+    );
+  }
 }
